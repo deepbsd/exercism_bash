@@ -1,62 +1,24 @@
 #!/usr/bin/env bash
 
-
+# Wow!  I got wrapped around the axel on this in the first iteration!
+# I didn't need to produce the factors after all!  Sheesh!
 
 num=$1  # value to test
-vals=()
 string=""
 
-if [ $1 -lt 2 ] 
-	then 
-	echo $1 
-	exit 0
-fi
+div_by () {
+	if [[ $(( $num % $1 )) == 0 ]]; then
+		return 0
+	else
+		return 1
+	fi
+}
 
+div_by 3 && string+='Pling'
+div_by 5 && string+='Plang'
+div_by 7 && string+='Plong'
 
-for (( i=2; i<=$1; i++)); do
-	while [ $((num%$i)) == 0 ]; do
-		# echo $i
-		vals+=(" $i")
-		num="$((num/$i))"
-	done
-done
-
-
-
-#echo "VALS: "${vals[@]*5%%}
-
-
-if echo ${vals[*]} | grep -q '3'; then
-	# for i in $(seq 0 ${#vals})
-	# do
-	# 	if echo ${vals[$i]} | grep -q '5' && [ ${#vals[$i]} -eq 1 ]; then
-	# 		string+="Pling";
-	# 	fi
-	# done
-	string+="Pling";
-fi
-if  echo ${vals[*]} | grep -q '5'; then
-	# for i in $(seq 0 ${#vals}) 
-	# do
-	# 	if echo ${vals[$i]} | grep -q '5' && [ ${#vals[$i]} -eq 1 ]; then
-	# 		string+="Plang";
-	# 	fi
-	# done
-	string+="Plang";
-fi
-if echo ${vals[*]} | grep -q '7'; then
-
-	string+="Plong";
-fi
-
-
-
-#echo "STRING: "$string
-
-if [  -z "$string"  ]; then
-	#echo "changing..."
-	string=$1
-fi
+[[ -z $string ]] && string+=$num
 
 echo $string
 
