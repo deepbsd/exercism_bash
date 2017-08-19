@@ -1,4 +1,19 @@
 #!/usr/bin/env bash
 
-thing=$1
-[[ echo $thing | grep ! ]] 2>/dev/null && echo 'Whoa, chill out!'
+# using gnu printf on osx
+textin="$(gprintf %b "${1}" 2>/dev/null)"
+
+textin="${textin//[[:space:]]/}"
+
+
+[[ "${textin}" == "" ]] && echo "Fine. Be that way!" && exit 0
+
+
+[[ "$textin" == *[[:upper:]]* ]] && [[ "$textin" != *[[:lower:]]* ]] &&	echo "Whoa, chill out!" && exit 0
+
+
+[[ "${textin: -1}" == "?" ]] && echo "Sure." && exit 0
+
+
+echo "Whatever."
+
