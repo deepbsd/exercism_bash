@@ -3,7 +3,7 @@
 # using gnu printf on osx
 textin="$(gprintf %b "${1}" 2>/dev/null)"
 
-textin=`echo $textin | sed -e 's/[[:space:]]//g'`
+textin="${textin//[[:space:]]/}"
 
 [[ "${textin}" == "" ]] && echo "Fine. Be that way!" && exit 0
 
