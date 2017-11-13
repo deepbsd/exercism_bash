@@ -1,6 +1,11 @@
 #return word count for each word in a string
+# Need to be running bash 4.x or greater!!
+
 
 input=${1}
+input=`echo $input|sed 's/,/ /g'`
+input=`echo $input|sed 's/[.:,&@%$!^]//g' `
+input=`echo $input | tr '[:upper:]' '[:lower:]' `
 declare -A words
 ouput=''
 

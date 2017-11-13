@@ -1,7 +1,7 @@
 #!/usr/bin/env bats
 
 @test "count one word" {
-    run ./word_count.sh "word"
+    run bash ./word_count.sh "word"
 
     [ "$status" -eq 0 ]
     echo $output | grep "word: 1"
@@ -9,7 +9,7 @@
 }
 
 @test "count one of each word" {
-    run ./word_count.sh "one of each"
+    run bash ./word_count.sh "one of each"
 
     [ "$status" -eq 0 ]
     echo $output | grep "of: 1"
@@ -19,7 +19,7 @@
 }
 
 @test "multiple occurrences of a word" {
-    run ./word_count.sh "one fish two fish red fish blue fish"
+    run bash ./word_count.sh "one fish two fish red fish blue fish"
 
     [ "$status" -eq 0 ]
     echo $output | grep "fish: 4"
@@ -31,7 +31,7 @@
 }
 
 @test "handle cramped lists" {
-    run ./word_count.sh "one,two,three"
+    run bash ./word_count.sh "one,two,three"
 
     [ "$status" -eq 0 ]
     echo $output | grep "one: 1"
@@ -41,7 +41,7 @@
 }
 
 @test "ignore punctuation" {
-    run ./word_count.sh "car: carpet as java: javascript!!&@$%^&"
+    run bash ./word_count.sh "car: carpet as java: javascript!!&@$%^&"
 
    [ "$status" -eq 0 ]
     echo $output | grep "car: 1"
@@ -53,7 +53,7 @@
 }
 
 @test "include numbers" {
-    run ./word_count.sh "testing, 1, 2 testing"
+    run bash ./word_count.sh "testing, 1, 2 testing"
 
     [ "$status" -eq 0 ]
     echo $output | grep "testing: 2"
@@ -63,7 +63,7 @@
 }
 
 @test "normalize case" {
-    run ./word_count.sh "go Go GO Stop stop"
+    run bash ./word_count.sh "go Go GO Stop stop"
 
     [ "$status" -eq 0 ]
     echo $output | grep "go: 3"
@@ -72,7 +72,7 @@
 }
 
 @test "handle apostrophes" {
-    run ./word_count.sh "First: don't laugh. Then: don't cry."
+    run bash ./word_count.sh "First: don't laugh. Then: don't cry."
 
     [ "$status" -eq 0 ]
     echo $output | grep "first: 1"
