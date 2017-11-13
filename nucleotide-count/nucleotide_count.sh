@@ -1,11 +1,7 @@
 # count nucleotides by letter as parsed from $1
 
 input=${1}
-A=0
-G=0
-C=0
-T=0
-
+A=0; G=0; C=0; T=0;
 
 error="Invalid nucleotide in strand"
 
