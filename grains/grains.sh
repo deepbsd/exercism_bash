@@ -3,12 +3,12 @@
 ### get the square number from argument
 number=${1}
 
+### check for these errors in input
 error(){
     echo "Error: invalid input"
     exit 1
 }
 
-### check for these errors in input
 errors=(0 -1 65)
 
 for n in ${errors[@]}; do
