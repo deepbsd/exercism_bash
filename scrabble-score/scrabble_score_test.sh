@@ -9,7 +9,7 @@
 }
 
 @test 'uppercase letter' {
-  skip
+  #skip
   run bash scrabble_score.sh 'A'
   
   [ "$status" -eq 0 ]
@@ -17,7 +17,7 @@
 }
 
 @test 'valuable letter' {
-  skip
+  #skip
   run bash scrabble_score.sh 'f'
   
   [ "$status" -eq 0 ]
@@ -25,7 +25,7 @@
 }
 
 @test 'short word' {
-  skip
+  #skip
   run bash scrabble_score.sh 'at'
   
   [ "$status" -eq 0 ]
@@ -33,7 +33,7 @@
 }
 
 @test 'short, valuable word' {
-  skip
+  #skip
   run bash scrabble_score.sh 'zoo'
   
   [ "$status" -eq 0 ]
@@ -41,7 +41,7 @@
 }
 
 @test 'medium word' {
-  skip
+  #skip
   run bash scrabble_score.sh 'street'
   
   [ "$status" -eq 0 ]
@@ -49,7 +49,7 @@
 }
 
 @test 'medium, valuable word' {
-  skip
+  #skip
   run bash scrabble_score.sh 'quirky'
   
   [ "$status" -eq 0 ]
@@ -57,7 +57,7 @@
 }
 
 @test 'long, mixed-case word' {
-  skip
+  #skip
   run bash scrabble_score.sh 'OxyphenButazone'
   
   [ "$status" -eq 0 ]
@@ -65,7 +65,7 @@
 }
 
 @test 'english-like word' {
-  skip
+  #skip
   run bash scrabble_score.sh 'pinata'
   
   [ "$status" -eq 0 ]
@@ -73,7 +73,7 @@
 }
 
 @test 'empty input' {
-  skip
+  #skip
   run bash scrabble_score.sh ''
   
   [ "$status" -eq 0 ]
@@ -81,7 +81,7 @@
 }
 
 @test 'entire alphabet available' {
-  skip
+  #skip
   run bash scrabble_score.sh 'abcdefghijklmnopqrstuvwxyz'
   
   [ "$status" -eq 0 ]
