@@ -35,7 +35,7 @@
 
 # BONUS: Deal with floating point numbers
 @test "sides may be floats" {
-  skip
+  #skip
   run bash triangle.sh equilateral 0.5 0.5 0.5
 
   [ "$status" -eq 0 ]
@@ -93,7 +93,7 @@
 
 # BONUS: Deal with floating point numbers
 @test "isosceles sides may be floats" {
-  skip
+  #skip
   run bash triangle.sh isosceles 0.5 0.4 0.5
 
   [ "$status" -eq 0 ]
@@ -126,7 +126,7 @@
 }
 
 @test "sides that violate triangle inequality are not scalene even if they are all different" {
-  skip
+  #skip
   run bash triangle.sh scalene 7 3 2
 
   [ "$status" -eq 1 ]
@@ -135,7 +135,7 @@
 
 # BONUS: Deal with floating point numbers
 @test "scalene sides may be floats" {
-  skip
+  #skip
   run bash triangle.sh scalene 0.5 0.4 0.6
 
   [ "$status" -eq 0 ]
