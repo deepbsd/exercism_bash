@@ -3,7 +3,6 @@
 input=${PS1}
 power=${#input}
 
-
 val=0
 
 for n in ${input[@]}; do
