@@ -22,14 +22,14 @@
 }
 
 @test "a simple invalid SIN that becomes valid if reversed" {
-  skip
+  #skip
   run bash luhn.sh "59"
   [ "$status" -eq 0 ]
   [ "$output" == "true" ]
 }
 
 @test "a valid Canadian SIN" {
-  skip
+  #skip
   run bash luhn.sh "055 444 285"
   [ "$status" -eq 0 ]
   [ "$output" == "true" ]
@@ -43,7 +43,7 @@
 }
 
 @test "invalid credit card" {
-  skip
+  #skip
   run bash luhn.sh "8273 1232 7352 0569"
   [ "$status" -eq 0 ]
   [ "$output" == "false" ]
@@ -85,7 +85,7 @@
 }
 
 @test "input digit 9 is correctly converted to output digit 9" {
-  skip
+  #skip
   run bash luhn.sh "091"
   [ "$status" -eq 0 ]
   [ "$output" == "true" ]
