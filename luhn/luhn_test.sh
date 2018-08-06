@@ -8,20 +8,20 @@
 }
 
 @test "a single zero is invalid" {
-  skip
+  #skip
   run bash luhn.sh "0"
   [ "$status" -eq 0 ]
   [ "$output" == "false" ]
 }
 
 @test "a simple valid SIN that remains valid if reversed" {
-  skip
+  #skip
   run bash luhn.sh "059"
   [ "$status" -eq 0 ]
   [ "$output" == "true" ]
 }
 
-@test "a simple valid SIN that becomes invalid if reversed" {
+@test "a simple invalid SIN that becomes valid if reversed" {
   skip
   run bash luhn.sh "59"
   [ "$status" -eq 0 ]
@@ -36,7 +36,7 @@
 }
 
 @test "invalid Canadian SIN" {
-  skip
+  #skip
   run bash luhn.sh "055 444 286"
   [ "$status" -eq 0 ]
   [ "$output" == "false" ]
@@ -50,35 +50,35 @@
 }
 
 @test "valid strings with a non-digit included become invalid" {
-  skip
+  #skip
   run bash luhn.sh "055a 444 285"
   [ "$status" -eq 0 ]
   [ "$output" == "false" ]
 }
 
 @test "valid strings with punctuation included become invalid" {
-  skip
+  #skip
   run bash luhn.sh "055-444-285"
   [ "$status" -eq 0 ]
   [ "$output" == "false" ]
 }
 
 @test "valid strings with symbols included become invalid" {
-  skip
+  #skip
   run bash luhn.sh "055£ 444$ 285"
   [ "$status" -eq 0 ]
   [ "$output" == "false" ]
 }
 
 @test "single zero with space is invalid" {
-  skip
+  #skip
   run bash luhn.sh " 0"
   [ "$status" -eq 0 ]
   [ "$output" == "false" ]
 }
 
 @test "more than a single zero is valid" {
-  skip
+  #skip
   run bash luhn.sh "0000 0"
   [ "$status" -eq 0 ]
   [ "$output" == "true" ]
@@ -92,7 +92,7 @@
 }
 
 @test "strings with non-digits is invalid" {
-  skip
+  #skip
   run bash luhn.sh ":9"
   [ "$status" -eq 0 ]
   [ "$output" == "false" ]
