@@ -7,18 +7,22 @@ error(){
   exit 1
 }
 
-# Error out if bad input...
-[[ $input =~ ^[0-9]+$ ]] || error
-[[ $input -gt 0 ]] || error
+validate(){
+    [[ ${1} =~ ^[0-9]+$ ]] && [[ ${1} -gt 0 ]] || error
+}
+
+validate ${input} 
+
+posnum=${input}   # input has now been sanitized
 
 count=0   # count iterations...
 
-# must remove bad input or loop is infinite
-while [[ ${input} -ne 1 ]]; do
-  if [ $((input % 2)) -eq 0 ]; then
-    ((input=input/2))
+# must validate input or loop is infinite
+while [[ ${posnum} -ne 1 ]]; do
+  if [ $((posnum % 2)) -eq 0 ]; then
+    ((posnum=posnum/2))
   else 
-    ((input=1+input*3))
+    ((posnum=1+posnum*3))
   fi
   ((count+=1))
 done
