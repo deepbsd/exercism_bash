@@ -1,14 +1,23 @@
 #!/usr/bin/env bash
 
-input=${PS1}
+input=${1}
 power=${#input}
-
 val=0
 
-for n in ${input[@]}; do
+error(){
+  echo "false" && exit 1
+}
+
+# No two-digit armstrong numbers...
+[[ ${power} -eq 2 ]] && error
+
+# create an iterator
+arr=( $( echo ${input} | grep -o . ) )
+
+for n in ${arr[@]}; do
     ((val+=n**${power}))
 done
 
 [[ ${val} -eq ${input} ]] && echo "true" && exit 0
 
-echo "false" && exit 1
+error

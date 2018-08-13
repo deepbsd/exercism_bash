@@ -9,7 +9,7 @@
 }
 
 @test 'There are no two digit Armstrong numbers' {
-  skip
+  #skip
   run bash armstrong_numbers.sh 10
 
   [ "$status" -eq 1 ]
@@ -25,7 +25,7 @@
 }
 
 @test 'A three digit number that is not an Armstrong number' {
-  skip
+  #skip
   run bash armstrong_numbers.sh 100
 
   [ "$status" -eq 1 ]
@@ -41,7 +41,7 @@
 }
 
 @test 'A four digit number that is not an Armstrong number' {
-  skip
+  #skip
   run bash armstrong_numbers.sh 9475
 
   [ "$status" -eq 1 ]
@@ -57,7 +57,7 @@
 }
 
 @test 'A seven digit number that is not an Armstrong number' {
-  skip
+  #skip
   run bash armstrong_numbers.sh 9926314
 
   [ "$status" -eq 1 ]
