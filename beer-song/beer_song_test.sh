@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -e
 
 @test 'first_generic_verse' {
     #[[ $BATS_RUN_SKIPPED == true  ]] || skip
