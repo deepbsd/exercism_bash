@@ -45,11 +45,10 @@ say_verse(){
     fi
 
 
-    verse="${bottle_num} ${bottles1} of beer on the wall, ${bottle_num} ${bottles1} of beer. 
-${verse2} ${bottle_num1} ${bottles2} of beer on the wall."
+    verse="${bottle_num} ${bottles1} of beer on the wall, ${bottle_num} ${bottles1} of beer. \n${verse2} ${bottle_num1} ${bottles2} of beer on the wall.\n"
 
 
-    echo "${verse^} "
+    printf "${verse^}"
 }
 
 [[ ${#input[@]} -eq 1 ]] && say_verse $input && exit 0;
