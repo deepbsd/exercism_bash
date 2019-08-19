@@ -21,13 +21,11 @@ say_verse(){
     verse3="Go to the store and get some more,"
  
    if [[ $bottle_num -gt 2 ]]; then
-        #bottle_num1=$((bottle_num-1)) 
         bottles1=${bottle_plural}
         bottles2=${bottle_plural}
     fi
 
     if [[ $bottle_num -eq 2 ]]; then
-        #bottle_num1=$((bottle_num-1)) 
         bottles1=${bottle_plural}
         bottles2=${bottle_sing}
     fi
@@ -48,19 +46,18 @@ say_verse(){
 
 
     verse="${bottle_num} ${bottles1} of beer on the wall, ${bottle_num} ${bottles1} of beer. 
-${verse2} ${bottle_num1} ${bottles2} of beer on the wall." 
+${verse2} ${bottle_num1} ${bottles2} of beer on the wall."
 
 
-    echo ${verse} 
+    echo "${verse^} "
 }
 
 [[ ${#input[@]} -eq 1 ]] && say_verse $input && exit 0;
 
-while [[ $input -ge 0 ]]; do
+while [[ $input -ge $2 ]]; do
     say_verse $input
+    echo
     input=$((input-1))
 done
-
-#say_verse $input
 
 exit 0
