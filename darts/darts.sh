@@ -6,7 +6,8 @@ error(){
 
 # sanitize input
 [ $# -lt 2 ] && error
-[ "$1" -eq "$1" ] && [ "$2" -eq "$2" ] || error
+# Why isn't this working!!!
+#[ "$1" -eq "$1" ] && [ "$2" -eq "$2" ] || error
 
 
 distance=$(echo "sqrt($1^2"+"$2^2)" | bc -l)
