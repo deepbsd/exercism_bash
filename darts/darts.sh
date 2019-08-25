@@ -6,9 +6,8 @@ error(){
 
 # sanitize input
 [ $# -lt 2 ] && error
-# Why isn't this working!!!
-#[ "$1" -eq "$1" ] && [ "$2" -eq "$2" ] || error
-
+re='^[+-]?[0-9]+\.?[0-9]*$'
+! [[ $1 =~ $re && $2 =~ $re ]] && error
 
 distance=$(echo "sqrt($1^2"+"$2^2)" | bc -l)
 
