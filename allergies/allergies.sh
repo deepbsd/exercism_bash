@@ -18,12 +18,10 @@ function genlist(){
 }
 
 function allergic_to(){
-    if [[ "$list" =~ "$allergies" ]]; then echo "true"
-    else echo "false"
-    fi
+    [[ "$list" =~ "$allergies" ]] && echo "true" || echo "false"
 }
 
-genlist  # do this regardless...
+genlist 
 
 if [[ $method == 'list' ]]; then echo $list; fi
 if [[ $method == 'allergic_to' ]]; then allergic_to; fi
