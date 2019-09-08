@@ -12,4 +12,4 @@ while [ $num -gt 1 ]; do
         factor+=1
     fi
 done
-return result
+echo ${result[@]}
