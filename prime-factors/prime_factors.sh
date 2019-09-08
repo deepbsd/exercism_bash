@@ -4,9 +4,10 @@ num=$1
 factor=2
 result=()
 while [ $num -gt 1 ]; do
-    if $( expr num % factor == 0 ); then
+    echo "Num: ${num} Factor: ${factor}"
+    if [  $((num % factor)) -eq 0 ]; then
         result+=$(factor)
-        num=$(( expr /= factor ))
+        (( num /= factor ))
     else
         factor+=1
     fi
