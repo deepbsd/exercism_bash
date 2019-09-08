@@ -1,15 +1,17 @@
 #!/usr/bin/env bash
 
 num=$1
-factor=2
+factr=2
 result=()
 while [ $num -gt 1 ]; do
-    echo "Num: ${num} Factor: ${factor}"  # remove later
-    if [  $((num % factor)) -eq 0 ]; then
-        result+=$(factor)
-        (( num /= factor ))
+
+    if [  $((num % factr)) -eq 0 ]; then
+
+        result+=($factr)
+
+        (( num /= factr ))
     else
-        factor+=1
+        (( factr++ ))
     fi
 done
 echo ${result[@]}
