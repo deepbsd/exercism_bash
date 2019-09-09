@@ -4,10 +4,6 @@ planet=$1
 seconds=$2
 earth_seconds=31557600
 
-error(){
-    echo 'not a planet' && exit 1
-}
-
 timeconvert(){
     pct_of_earth_orbit=$1
     result=`echo "scale=4; $seconds/($earth_seconds*$pct_of_earth_orbit)" | bc`
@@ -32,7 +28,8 @@ case $planet in
     'Neptune' )
         timeconvert 164.79132 ;;
     * )
-        error ;;
+        echo 'not a planet'
+        exit 1;;
 esac
 
 exit 0
