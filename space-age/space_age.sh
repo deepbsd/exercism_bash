@@ -28,8 +28,7 @@ case $planet in
     'Neptune' )
         timeconvert 164.79132 ;;
     * )
-        echo 'not a planet'
-        exit 1;;
+        echo 'not a planet' && exit 1;;
 esac
 
 exit 0
