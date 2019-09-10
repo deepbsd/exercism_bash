@@ -19,7 +19,7 @@ done
 
 result+=${zeros}    # add all the zeroes to get a proper count
 
-num_zeroes=$(awk -F "0" '{print NF-1}' <<< "${result}")  # going to remove all unneccessary zeros
+num_zeroes=$(awk -F "0" '{print NF-1}' <<< "${result}")  # we will remove all unneccessary zeros
 
 if [ $num_zeroes -le 3 ]; then ohms="ohms"; fi
 if [ $num_zeroes -ge 3 -a $num_zeroes -lt 6  ]; then ohms="kiloohms"; result=$(echo "$result" | sed -r 's/000//g') ; fi
