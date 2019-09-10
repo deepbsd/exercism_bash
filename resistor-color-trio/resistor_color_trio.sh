@@ -19,12 +19,12 @@ done
 
 result+=${zeros}    # add all the zeroes to get a proper count
 
-num=$(awk -F "0" '{print NF-1}' <<< "${result}")  # going to remove all unneccessary zeros
+num_zeroes=$(awk -F "0" '{print NF-1}' <<< "${result}")  # going to remove all unneccessary zeros
 
-if [ $num -le 3 ]; then ohms="ohms"; fi
-if [ $num -ge 3 -a $num -lt 6  ]; then ohms="kiloohms"; result=$(echo "$result" | sed -r 's/000//g') ; fi
-if [ $num -ge 6 -a $num -lt 9 ]; then ohms="megaohms" ; result=$(echo "$result" | sed -r 's/000000//g') ; fi
-if [ $num -ge 9 ]; then ohms="gigaohms" ; result=$(echo "$result" | sed -r 's/000000000//g') ; fi
+if [ $num_zeroes -le 3 ]; then ohms="ohms"; fi
+if [ $num_zeroes -ge 3 -a $num_zeroes -lt 6  ]; then ohms="kiloohms"; result=$(echo "$result" | sed -r 's/000//g') ; fi
+if [ $num_zeroes -ge 6 -a $num_zeroes -lt 9 ]; then ohms="megaohms" ; result=$(echo "$result" | sed -r 's/000000//g') ; fi
+if [ $num_zeroes -ge 9 ]; then ohms="gigaohms" ; result=$(echo "$result" | sed -r 's/000000000//g') ; fi
 if [ $result == 00 ]; then result=0; fi
 
 echo "$result $ohms" && exit 0
