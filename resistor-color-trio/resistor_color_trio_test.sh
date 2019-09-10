@@ -36,21 +36,21 @@
 }
 
 @test "Blue and violet and grey" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash resistor_color_trio.sh "blue" "violet" "grey"
     [[ $status -eq 0 ]]
     [[ $output == "6700 megaohms" ]]
 }
 
 @test "Minimum possible value" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash resistor_color_trio.sh "black" "black" "black"
     [[ $status -eq 0 ]]
     [[ $output == "0 ohms" ]]
 }
 
 @test "Maximum possible value" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash resistor_color_trio.sh "white" "white" "white"
     [[ $status -eq 0 ]]
     [[ $output == "99 gigaohms" ]]
@@ -58,21 +58,21 @@
 
 
 @test "Invalid first color" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash resistor_color_trio.sh "foo" "white" "white"
     [[ $status -eq 1 ]]
     [[ -n $output ]]
 }
 
 @test "Invalid second color" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash resistor_color_trio.sh "white" "bar" "white"
     [[ $status -eq 1 ]]
     [[ -n $output ]]
 }
 
 @test "Invalid third color" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash resistor_color_trio.sh "white" "white" "baz"
     [[ $status -eq 1 ]]
     [[ -n $output ]]
