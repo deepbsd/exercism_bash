@@ -4,20 +4,22 @@ result=""; zeros=""; ohms="ohms"
 declare -A colorsToNumbers
 colorsToNumbers=( [black]=0 [brown]=1 [red]=2 [orange]=3 [yellow]=4 [green]=5 [blue]=6 [violet]=7 [grey]=8 [white]=9 )
 
-max=${colorsToNumbers[$3]}   # error out if invalid 3rd arg
-[[ $max =~ ^[0-9]$  ]] || exit 1
+error(){ echo "invalid color" && exit 1; }
 
-for ((i=0;i<$max;i++)); do zeros+=0; done  # how many zeros?
+[[ ! -v colorsToNumbers[$3] ]] && error      # error out if invalid 3rd arg 
+
+max=${colorsToNumbers[$3]}  # how many zeros? 
+for ((i=0;i<$max;i++)); do zeros+=0; done  
 
 for color in $1 $2     # get the first pair of numbers
 do
-    [[ ! -v colorsToNumbers[$color] ]] && echo "invalid color" && exit 1
+    [[ ! -v colorsToNumbers[$color] ]] && error && exit 1
     result+=${colorsToNumbers[$color]}
 done
 
-result+=${zeros}  
+result+=${zeros}    # add all the zeroes to get a proper count
 
-num=$(awk -F "0" '{print NF-1}' <<< "${result}")  # going to remove unneccessary zeros
+num=$(awk -F "0" '{print NF-1}' <<< "${result}")  # going to remove all unneccessary zeros
 
 if [ $num -le 3 ]; then ohms="ohms"; fi
 if [ $num -ge 3 -a $num -lt 6  ]; then ohms="kiloohms"; result=$(echo "$result" | sed -r 's/000//g') ; fi
