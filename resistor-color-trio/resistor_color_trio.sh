@@ -13,7 +13,7 @@ for ((i=0;i<$max;i++)); do zeros+=0; done
 
 for color in $1 $2     # get the first pair of numbers
 do
-    [[ ! -v colorsToNumbers[$color] ]] && error && exit 1
+    [[ ! -v colorsToNumbers[$color] ]] && error
     result+=${colorsToNumbers[$color]}
 done
 
