@@ -9,7 +9,7 @@
 }
 
 @test "one piece" {
-    [[ $BATS_RUN_SKIPPED == true  ]] || skip
+    #[[ $BATS_RUN_SKIPPED == true  ]] || skip
     expected=$(cat <<END
 And all for the want of a nail.
 END
@@ -20,7 +20,7 @@ END
 }
 
 @test "two pieces" {
-    [[ $BATS_RUN_SKIPPED == true  ]] || skip
+    #[[ $BATS_RUN_SKIPPED == true  ]] || skip
     expected=$(cat <<END
 For want of a nail the shoe was lost.
 And all for the want of a nail.
@@ -32,7 +32,7 @@ END
 }
 
 @test "three pieces" {
-    [[ $BATS_RUN_SKIPPED == true  ]] || skip
+    #[[ $BATS_RUN_SKIPPED == true  ]] || skip
     expected=$(cat <<END
 For want of a nail the shoe was lost.
 For want of a shoe the horse was lost.
@@ -46,7 +46,7 @@ END
 
 
 @test "full proverb" {
-    [[ $BATS_RUN_SKIPPED == true  ]] || skip
+    #[[ $BATS_RUN_SKIPPED == true  ]] || skip
     expected=$(cat <<END
 For want of a nail the shoe was lost.
 For want of a shoe the horse was lost.
@@ -63,7 +63,7 @@ END
 }
 
 @test "four pieces modernized" {
-    [[ $BATS_RUN_SKIPPED == true  ]] || skip
+    #[[ $BATS_RUN_SKIPPED == true  ]] || skip
     expected=$(cat <<END
 For want of a pin the gun was lost.
 For want of a gun the soldier was lost.
@@ -77,7 +77,7 @@ END
 }
 
 @test "items with whitespace" {
-    [[ $BATS_RUN_SKIPPED == true  ]] || skip
+    #[[ $BATS_RUN_SKIPPED == true  ]] || skip
     expected=$(cat <<END
 For want of a rusty nail the horse shoe was lost.
 And all for the want of a rusty nail.
@@ -89,7 +89,7 @@ END
 }
 
 @test "shell globbing character" {
-    [[ $BATS_RUN_SKIPPED == true  ]] || skip
+    #[[ $BATS_RUN_SKIPPED == true  ]] || skip
     expected=$(cat <<END
 For want of a quotes the * was lost.
 And all for the want of a quotes.
