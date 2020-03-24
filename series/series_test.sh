@@ -57,7 +57,7 @@
 }
 
 @test "slice length cannot be zero" {
-    [[ $BATS_RUN_SKIPPED == true  ]] || skip
+    #[[ $BATS_RUN_SKIPPED == true  ]] || skip
     expected="slice length cannot be zero"
     run bash series.sh 12345 0
     [[ $status -eq 1 ]]
@@ -65,7 +65,7 @@
 }
 
 @test "slice length cannot be negative" {
-    [[ $BATS_RUN_SKIPPED == true  ]] || skip
+    #[[ $BATS_RUN_SKIPPED == true  ]] || skip
     expected="slice length cannot be negative"
     run bash series.sh 123 -1
     [[ $status -eq 1 ]]
@@ -73,7 +73,7 @@
 }
 
 @test "empty series is invalid" {
-    [[ $BATS_RUN_SKIPPED == true  ]] || skip
+    #[[ $BATS_RUN_SKIPPED == true  ]] || skip
     expected="series cannot be empty"
     run bash series.sh "" 1
     [[ $status -eq 1 ]]
