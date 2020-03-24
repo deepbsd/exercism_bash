@@ -5,7 +5,6 @@ error(){
 }
 
 main(){
-
     position_num=10; declare -i product; product=0
 
     input_arr=(`echo $1 | sed 's/[ -]//g' | grep -o .`)
