@@ -11,11 +11,10 @@ main(){
    end=$((start+length))
    out_arr=()
 
-   while [ $end -le ${#string[@]} ]; do
-      echo "${string:$start:$end}"
-      out_arr+=( "${string:$start:$end}" )
-      ((end++))
+   while [ $end -le ${#string} ] ; do
+      out_arr+=( "${string:start:length}" )
       ((start++))
+      end=$((start+length))
    done
 
    echo "${out_arr[@]}"
@@ -24,7 +23,7 @@ main(){
 
 
 
-#main "$@"
+main "$@"
 
 
-main 1234 2
+#main 1234567 2
