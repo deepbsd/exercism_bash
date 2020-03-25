@@ -73,42 +73,42 @@
 }
 
 @test "much larger factors" {
-    [[ $BATS_RUN_SKIPPED == true  ]] || skip
+    #[[ $BATS_RUN_SKIPPED == true  ]] || skip
     run bash sum_of_multiples.sh 10000 43 47
     (( status == 0 ))
     [[ $output == "2203160" ]]
 }
 
 @test "all numbers are multiples of 1" {
-    [[ $BATS_RUN_SKIPPED == true  ]] || skip
+    #[[ $BATS_RUN_SKIPPED == true  ]] || skip
     run bash sum_of_multiples.sh 100 1
     (( status == 0 ))
     [[ $output == "4950" ]]
 }
 
 @test "no factors means an empty sum" {
-    [[ $BATS_RUN_SKIPPED == true  ]] || skip
+    #[[ $BATS_RUN_SKIPPED == true  ]] || skip
     run bash sum_of_multiples.sh 10000 
     (( status == 0 ))
     [[ $output == "0" ]]
 }
 
 @test "the only multiple of 0 is 0" {
-    [[ $BATS_RUN_SKIPPED == true  ]] || skip
+    #[[ $BATS_RUN_SKIPPED == true  ]] || skip
     run bash sum_of_multiples.sh 1 0
     (( status == 0 ))
     [[ $output == "0" ]]
 }
 
 @test "the factor 0 does not affect the sum of multiples of other factors" {
-    [[ $BATS_RUN_SKIPPED == true  ]] || skip
+    #[[ $BATS_RUN_SKIPPED == true  ]] || skip
     run bash sum_of_multiples.sh 4 3 0
     (( status == 0 ))
     [[ $output == "3" ]]
 }
 
 @test "solutions using include-exclude must extend to cardinality greater than 3" {
-    [[ $BATS_RUN_SKIPPED == true  ]] || skip
+    #[[ $BATS_RUN_SKIPPED == true  ]] || skip
     run bash sum_of_multiples.sh 10000 2 3 5 7 11
     (( status == 0 ))
     [[ $output == "39614537" ]]
