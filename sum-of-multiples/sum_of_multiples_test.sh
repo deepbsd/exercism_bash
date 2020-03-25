@@ -31,7 +31,7 @@
 }
 
 @test "each multiple is only counted once" {
-    [[ $BATS_RUN_SKIPPED == true  ]] || skip
+    #[[ $BATS_RUN_SKIPPED == true  ]] || skip
     run bash sum_of_multiples.sh 100 3 5
     (( status == 0 ))
     [[ $output == "2318" ]]

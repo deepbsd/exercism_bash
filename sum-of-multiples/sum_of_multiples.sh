@@ -4,12 +4,12 @@ main(){
     sum=0
     limit=$1
     shift
-    numbers_arr="$@"
     factors_arr=()
-    for number in ${numbers_arr[@]} ; do
-        for (( i=1; i<=$limit; i++ ))
-        do
+    for number in "$@" ; do
+        for (( i=1; i<$limit; i++ )) ; do
+            echo "pass for  $number"
             [[ $(( $i % $number )) == 0 ]] && \
+                # Problem! False positive for '5' and '25' or '25' in '125'
                 [[ ! ${factors_arr[@]} =~ "$i" ]] && \
                 factors_arr+=( "$i" )
         done
@@ -28,6 +28,6 @@ main(){
 
 }
 
-#main 10 3 5
+main 100 3 5
 #main "$@"
 
