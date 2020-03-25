@@ -1,10 +1,8 @@
 #!/usr/bin/env bash
 
 main(){
-    sum=0
-    limit=$1
+    sum=0; limit=$1; factors_arr=()
     shift
-    factors_arr=()
     for number in "$@" ; do
         [[ $number -eq 0 ]] && continue
         for (( i=1; i<$limit; i++ )) ; do
