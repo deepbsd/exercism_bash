@@ -10,6 +10,7 @@ main(){
             echo "pass for  $number"
             [[ $(( $i % $number )) == 0 ]] && \
                 # Problem! False positive for '5' and '25' or '25' in '125'
+                # Might have to loop over each element in ${factors_arr}
                 [[ ! ${factors_arr[@]} =~ "$i" ]] && \
                 factors_arr+=( "$i" )
         done
