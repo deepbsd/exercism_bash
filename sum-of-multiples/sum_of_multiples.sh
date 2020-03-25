@@ -8,6 +8,8 @@ main(){
     for number in "$@" ; do
         for (( i=1; i<$limit; i++ )) ; do
             [[ $(( $i % $number )) == 0 ]] && \
+                # I'm probably gonna have to loop over and
+                # compare each element after all.
                 [[ ! ${factors_arr[@]} =~ " $i " ]] && \
                 factors_arr+=( "$i" )
         done
@@ -26,6 +28,6 @@ main(){
 
 }
 
-#main 100 3 5
+#main 51 5 25
 main "$@"
 

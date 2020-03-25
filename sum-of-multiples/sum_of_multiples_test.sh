@@ -38,35 +38,35 @@
 }
 
 @test "a much larger limit" {
-    [[ $BATS_RUN_SKIPPED == true  ]] || skip
+    #[[ $BATS_RUN_SKIPPED == true  ]] || skip
     run bash sum_of_multiples.sh 1000 3 5
     (( status == 0 ))
     [[ $output == "233168" ]]
 }
 
 @test "three factors" {
-    [[ $BATS_RUN_SKIPPED == true  ]] || skip
+    #[[ $BATS_RUN_SKIPPED == true  ]] || skip
     run bash sum_of_multiples.sh 20 7 13 17
     (( status == 0 ))
     [[ $output == "51" ]]
 }
 
 @test "factors not relatively prime" {
-    [[ $BATS_RUN_SKIPPED == true  ]] || skip
+    #[[ $BATS_RUN_SKIPPED == true  ]] || skip
     run bash sum_of_multiples.sh 15 4 6
     (( status == 0 ))
     [[ $output == "30" ]]
 }
 
 @test "some pairs of factors relatively prime and some not" {
-    [[ $BATS_RUN_SKIPPED == true  ]] || skip
+    #[[ $BATS_RUN_SKIPPED == true  ]] || skip
     run bash sum_of_multiples.sh 150 5 6 8
     (( status == 0 ))
     [[ $output == "4419" ]]
 }
 
 @test "one factor is a multiple of another" {
-    [[ $BATS_RUN_SKIPPED == true  ]] || skip
+    #[[ $BATS_RUN_SKIPPED == true  ]] || skip
     run bash sum_of_multiples.sh 51 5 25
     (( status == 0 ))
     [[ $output == "275" ]]
