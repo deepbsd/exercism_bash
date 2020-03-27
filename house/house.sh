@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 actors=(
-'' 'the house that Jack built'
+1 'the house that Jack built'
 'the malt' 'the rat' 'the cat'
 'the dog' 'the cow with the crumpled horn'
 'the maiden all forlorn'
@@ -12,7 +12,7 @@ actors=(
 'the horse and the hound and the horn'
 )
 verbs=(
-'' 'lay in' 'ate' 'killed' 'worried'
+1 'lay in' 'ate' 'killed' 'worried'
 'tossed' 'milked' 'kissed' 'married'
 'woke' 'kept' 'belonged to'
         )
@@ -21,17 +21,18 @@ main(){
 
     verse=$1
     msg=()
-    while [ $verse -gt 0 ]; do
-        echo "verse: ${verse}"
-        [ $verse -eq 1 ] && msg=(`echo "This is ${actors[$verse]}"`)
-        [ $verse -gt 1 ] && msg+=(`echo "that ${verbs[$verse]} ${actors[$verse]}"`)
-
-        echo "msg: ${msg[@]}"
-        ((verse--))
+    msg+=(`printf "This is %s\n" "${actors[$verse]}"`)
+    while [ $verse -gt 1 ]; do
+      [ $verse -gt 0 ] && \
+          msg+=(`printf "that %s\n" "${verbs[$verse-1]} ${actors[$verse-1]}"`)
+      ((verse--))
     done
 
-    echo "This is ${msg[@]}"
+    echo "length: ${#msg}"
+
+    echo "${msg[@]}."
+
 }
 
 #main "$@"
-main 1
+main 7
