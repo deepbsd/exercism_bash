@@ -166,7 +166,7 @@
 }
 
 @test "Error case" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash protein_translation.sh "UGG---AUG"
     (( status == 1 ))
     [[ $output == "Invalid codon" ]]

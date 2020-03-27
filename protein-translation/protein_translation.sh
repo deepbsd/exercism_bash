@@ -8,21 +8,19 @@ declare -A codon_keys=( \
 [UAC]=Tyrosine [UGU]=Cysteine [UGC]=Cysteine \
 [UGG]=Tryptophan [UAA]=STOP [UAG]=STOP [UGA]=STOP)
 
+error(){ echo "Invalid codon" && exit 1; }
 
 main(){
-    input=$1
-    proteins=""
-    start=0
+    input=$1; proteins=""; start=0
     while [ "$input" != "" ]; do
         key=${input:0:3}
-        #echo $key
         [[ ${codon_keys[$key]} == "STOP" ]] && break
-        proteins+=" $(echo ${codon_keys[$key]})"
+        echo ${codon_keys[$key]} | grep [A-Z] 1>/dev/null || error
+        proteins+=" $(echo ${codon_keys[$key]})" 
         input=${input:3}
     done
 
     echo "${proteins}" | sed 's/^ //g'
 }
 
-#main "UGC"
 main "$@"
