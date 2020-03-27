@@ -1,24 +1,25 @@
 #!/usr/bin/env bash
 
-# The following comments should help you get started:
-# - Bash is flexible. You may use functions or write a "raw" script.
-#
-# - Complex code can be made easier to read by breaking it up
-#   into functions, however this is sometimes overkill in bash.
-#
-# - You can find links about good style and other resources
-#   for Bash in './README.md'. It came with this exercise.
-#
-#   Example:
-#   # other functions here
-#   # ...
-#   # ...
-#
-#   main () {
-#     # your main function code here
-#   }
-#
-#   # call main with all of the positional arguments
-#   main "$@"
-#
-# *** PLEASE REMOVE THESE COMMENTS BEFORE SUBMITTING YOUR SOLUTION ***
+declare -A codon_keys=( [AUG]=Methionine [UUU]=Phenylalanine [UUC]=Phenylalanine
+[UUA]=Leucine [UUG]=Leucine [UCU]=Serine [UCC]=Serine [UCA]=Serine [UCG]=Serine
+[UAU]=Tyrosine [UAC]=Tyrosine [UGU]=Cysteine [UGC]=Cysteine [UGG]=Tryptophan
+[UAA]=STOP [UAG]=STOP [UGA]=STOP)
+
+
+main(){
+    input=$1
+    proteins=""
+    start=0
+    while [ "$input" != "" ]; do
+        key=${input:0:3}
+        #echo $key
+        [[ ${codon_keys[$key]} == "STOP" ]] && break
+        proteins+=" $(echo ${codon_keys[$key]})"
+        input=${input:3}
+    done
+
+    echo "${proteins}"
+}
+
+main "AUGUUUUCUUAAAUG"
+#main "$@"
