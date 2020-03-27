@@ -1,24 +1,37 @@
 #!/usr/bin/env bash
 
-# The following comments should help you get started:
-# - Bash is flexible. You may use functions or write a "raw" script.
-#
-# - Complex code can be made easier to read by breaking it up
-#   into functions, however this is sometimes overkill in bash.
-#
-# - You can find links about good style and other resources
-#   for Bash in './README.md'. It came with this exercise.
-#
-#   Example:
-#   # other functions here
-#   # ...
-#   # ...
-#
-#   main () {
-#     # your main function code here
-#   }
-#
-#   # call main with all of the positional arguments
-#   main "$@"
-#
-# *** PLEASE REMOVE THESE COMMENTS BEFORE SUBMITTING YOUR SOLUTION ***
+actors=(
+'' 'the house that Jack built'
+'the malt' 'the rat' 'the cat'
+'the dog' 'the cow with the crumpled horn'
+'the maiden all forlorn'
+'the man all tattered and torn'
+'the priest all shaven and shorn'
+'the rooster that crowed in the morn'
+'the farmer sowing his corn'
+'the horse and the hound and the horn'
+)
+verbs=(
+'' 'lay in' 'ate' 'killed' 'worried'
+'tossed' 'milked' 'kissed' 'married'
+'woke' 'kept' 'belonged to'
+        )
+
+main(){
+
+    verse=$1
+    msg=()
+    while [ $verse -gt 0 ]; do
+        echo "verse: ${verse}"
+        [ $verse -eq 1 ] && msg=(`echo "This is ${actors[$verse]}"`)
+        [ $verse -gt 1 ] && msg+=(`echo "that ${verbs[$verse]} ${actors[$verse]}"`)
+
+        echo "msg: ${msg[@]}"
+        ((verse--))
+    done
+
+    echo "This is ${msg[@]}"
+}
+
+#main "$@"
+main 1
