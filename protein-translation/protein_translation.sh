@@ -11,7 +11,7 @@ declare -A codon_keys=( \
 error(){ echo "Invalid codon" && exit 1; }
 
 main(){
-    input=$1; proteins=""; start=0
+    input=$1; proteins=""
     while [ "$input" != "" ]; do
         key=${input:0:3}
         [[ ${codon_keys[$key]} == "STOP" ]] && break
