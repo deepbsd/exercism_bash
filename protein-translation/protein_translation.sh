@@ -1,9 +1,12 @@
 #!/usr/bin/env bash
 
-declare -A codon_keys=( [AUG]=Methionine [UUU]=Phenylalanine [UUC]=Phenylalanine
-[UUA]=Leucine [UUG]=Leucine [UCU]=Serine [UCC]=Serine [UCA]=Serine [UCG]=Serine
-[UAU]=Tyrosine [UAC]=Tyrosine [UGU]=Cysteine [UGC]=Cysteine [UGG]=Tryptophan
-[UAA]=STOP [UAG]=STOP [UGA]=STOP)
+declare -A codon_keys=( \
+[AUG]=Methionine [UUU]=Phenylalanine \
+[UUC]=Phenylalanine [UUA]=Leucine \
+[UUG]=Leucine [UCU]=Serine [UCC]=Serine \
+[UCA]=Serine [UCG]=Serine [UAU]=Tyrosine \
+[UAC]=Tyrosine [UGU]=Cysteine [UGC]=Cysteine \
+[UGG]=Tryptophan [UAA]=STOP [UAG]=STOP [UGA]=STOP)
 
 
 main(){
@@ -18,8 +21,8 @@ main(){
         input=${input:3}
     done
 
-    echo "${proteins}"
+    echo "${proteins}" | sed 's/^ //g'
 }
 
-main "AUGUUUUCUUAAAUG"
-#main "$@"
+#main "UGC"
+main "$@"
