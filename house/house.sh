@@ -40,6 +40,8 @@ recite(){
 
 main(){
     count=$1 ; last=$2
+    [[ ! "$last" -ge "$count" ]] && error
+    [[ "$last" -eq 13 ]] && error
     while [[ "$last" -ge "$count" ]]; do
         recite "$count" "$last" 
         let count=$count+1
@@ -47,4 +49,3 @@ main(){
 }
 
 main "$@"
-#main 2 2

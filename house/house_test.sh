@@ -357,14 +357,14 @@ END
 }
 
 @test "invalid verse 3" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash house.sh 14 12
     [[ $status -ne 0 ]]
     [[ $output == *invalid* ]]
 }
 
 @test "invalid verse 4" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash house.sh 1 13
     [[ $status -ne 0 ]]
     [[ $output == *invalid* ]]
