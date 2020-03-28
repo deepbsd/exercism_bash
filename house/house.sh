@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 actors=(
-1 'the house that Jack built'
+1 'the house that Jack built.'
 'the malt' 'the rat' 'the cat'
 'the dog' 'the cow with the crumpled horn'
 'the maiden all forlorn'
@@ -24,6 +24,7 @@ error(){
 recite(){
     verse=$1; last=$2; 
     [ $last -gt $verse ] || [ $last -eq $verse ] || error
+    [ $verse -gt 0 ] && [ $last -gt 0 ] || error
     msg=()
     msg+=$(printf "This is %s\n" "${actors[$verse]}")
     while [ "$verse" -gt 1 ] ; do
@@ -31,20 +32,19 @@ recite(){
       ((verse--))
     done
 
+    verse=$1  # reset the verse number
     for line in "${msg[@]}"; do
-        printf "%s\n\n" "$line"
+        [ $verse -ne $last ] && printf "%s\n\n" "$line" || printf "%s\n" "$line"
     done
 }
 
 main(){
-
     count=$1 ; last=$2
-
     while [[ "$last" -ge "$count" ]]; do
         recite "$count" "$last" 
         let count=$count+1
     done
 }
 
-#main "$@"
-main 7 9
+main "$@"
+#main 2 2
