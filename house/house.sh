@@ -21,24 +21,30 @@ error(){
     echo "invalid" && exit 1
 }
 
-main(){
-
+recite(){
     verse=$1; last=$2; 
     [ $last -gt $verse ] || [ $last -eq $verse ] || error
     msg=()
     msg+=$(printf "This is %s\n" "${actors[$verse]}")
-    while [ $verse -gt 1 ] && [ "$last" -ge "$verse" ]; do
+    while [ "$verse" -gt 1 ] ; do
       msg+=$(printf "\nthat %s\n" "${verbs[$verse-1]} ${actors[$verse-1]}")
       ((verse--))
     done
 
-    #echo "length: ${#msg[@]}"
-
     for line in "${msg[@]}"; do
-        printf "%s\n" "$line"
+        printf "%s\n\n" "$line"
     done
+}
 
+main(){
+
+    count=$1 ; last=$2
+
+    while [[ "$last" -ge "$count" ]]; do
+        recite "$count" "$last" 
+        let count=$count+1
+    done
 }
 
 #main "$@"
-main 7 8
+main 7 9
