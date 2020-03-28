@@ -15,24 +15,30 @@ verbs=(
 1 'lay in' 'ate' 'killed' 'worried'
 'tossed' 'milked' 'kissed' 'married'
 'woke' 'kept' 'belonged to'
-        )
+)
+
+error(){
+    echo "invalid" && exit 1
+}
 
 main(){
 
-    verse=$1
+    verse=$1; last=$2; 
+    [ $last -gt $verse ] || [ $last -eq $verse ] || error
     msg=()
-    msg+=(`printf "This is %s\n" "${actors[$verse]}"`)
-    while [ $verse -gt 1 ]; do
-      [ $verse -gt 0 ] && \
-          msg+=(`printf "that %s\n" "${verbs[$verse-1]} ${actors[$verse-1]}"`)
+    msg+=$(printf "This is %s\n" "${actors[$verse]}")
+    while [ $verse -gt 1 ] && [ "$last" -ge "$verse" ]; do
+      msg+=$(printf "\nthat %s\n" "${verbs[$verse-1]} ${actors[$verse-1]}")
       ((verse--))
     done
 
-    echo "length: ${#msg}"
+    #echo "length: ${#msg[@]}"
 
-    echo "${msg[@]}."
+    for line in "${msg[@]}"; do
+        printf "%s\n" "$line"
+    done
 
 }
 
 #main "$@"
-main 7
+main 7 8
