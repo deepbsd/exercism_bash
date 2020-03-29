@@ -17,9 +17,7 @@ verbs=(
 'woke' 'kept' 'belonged to'
 )
 
-error(){
-    echo "invalid" && exit 1
-}
+error(){ echo "invalid" && exit 1 ; }
 
 recite(){
     verse=$1; last=$2; 
@@ -41,7 +39,7 @@ recite(){
 main(){
     count=$1 ; last=$2
     [[ ! "$last" -ge "$count" ]] && error
-    [[ "$last" -eq 13 ]] && error
+    [[ "$last" -ge 13 ]] && error
     while [[ "$last" -ge "$count" ]]; do
         recite "$count" "$last" 
         let count=$count+1
