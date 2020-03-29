@@ -17,12 +17,10 @@ verbs=(
 'woke' 'kept' 'belonged to'
 )
 
-error(){ echo "invalid" && exit 1 ; }
+error(){ echo "invalid" && exit 1; }
 
 recite(){
     verse=$1; last=$2; 
-    [ $last -gt $verse ] || [ $last -eq $verse ] || error
-    [ $verse -gt 0 ] && [ $last -gt 0 ] || error
     msg=()
     msg+=$(printf "This is %s\n" "${actors[$verse]}")
     while [ "$verse" -gt 1 ] ; do
@@ -37,12 +35,13 @@ recite(){
 }
 
 main(){
-    count=$1 ; last=$2
-    [[ ! "$last" -ge "$count" ]] && error
-    [[ "$last" -ge 13 ]] && error
-    while [[ "$last" -ge "$count" ]]; do
-        recite "$count" "$last" 
-        let count=$count+1
+    start=$1 ; last=$2
+    [[ "$last" -ge "$start" ]] || error
+    [ $start -gt 0 ] && [ $last -gt 0 ] || error
+    [[ "$last" -gt 12 ]] && error
+    while [[ "$last" -ge "$start" ]]; do
+        recite "$start" "$last" 
+        let start=$start+1
     done
 }
 
