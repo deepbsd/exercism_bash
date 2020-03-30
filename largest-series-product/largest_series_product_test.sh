@@ -36,7 +36,7 @@
 }
 
 @test "can find the largest product of 3" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash largest_series_product.sh 1027839564 3
     expected=270
     (( status == 0 ))
@@ -44,7 +44,7 @@
 }
 
 @test "can find the largest product of 5 with numbers in order" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash largest_series_product.sh 0123456789 5
     expected=15120
     (( status == 0 ))
@@ -52,7 +52,7 @@
 }
 
 @test "can get the largest product of a big number" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash largest_series_product.sh 73167176531330624919225119674426574742355349194934 6
     expected=23520
     (( status == 0 ))
@@ -60,7 +60,7 @@
 }
 
 @test "reports zero if the only digits are zero" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash largest_series_product.sh 0000 2
     expected=0
     (( status == 0 ))
@@ -68,7 +68,7 @@
 }
 
 @test "reports zero if all spans include zero" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash largest_series_product.sh 99099 3
     expected=0
     (( status == 0 ))
@@ -89,7 +89,7 @@
 # So LSP('123', 4) errors and LSP('', 0) does NOT.
 
 @test "reports 1 for empty string and empty product (0 span)" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash largest_series_product.sh 0
     expected=1
     (( status == 0 ))
