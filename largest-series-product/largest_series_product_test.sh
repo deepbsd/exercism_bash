@@ -118,7 +118,7 @@
 }
 
 @test "rejects empty string and nonzero span" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash largest_series_product.sh "" 1
     expected="span must be smaller than string length"
     [[ $status -ne 0 ]]
@@ -126,7 +126,7 @@
 }
 
 @test "rejects invalid character in digits" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash largest_series_product.sh 1234a5 2
     expected="input must only contain digits"
     [[ $status -ne 0 ]]
@@ -134,7 +134,7 @@
 }
 
 @test "rejects negative span" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash largest_series_product.sh 12345 -1
     expected="span must be greater than zero"
     [[ $status -ne 0 ]]
