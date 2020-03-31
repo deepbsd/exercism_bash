@@ -100,7 +100,7 @@
 # So again no error. It's the empty product, 1.
 
 @test "reports 1 for nonempty string and empty product (0 span)" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash largest_series_product.sh 123 0
     expected=1
     (( status == 0 ))
@@ -110,7 +110,7 @@
 # error cases
 
 @test "rejects span longer than string length" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash largest_series_product.sh 123 4
     expected="span must be smaller than string length"
     [[ $status -ne 0 ]]
