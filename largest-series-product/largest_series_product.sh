@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-echo "${BASH_VERSION}" | grep -e '^4.' 2>/dev/null && \
-    echo "Need Bash Version 5x" && exit 1
+echo "${BASH_VERSION}" | grep -e '^4.|^3.' 2>/dev/null && \
+    echo "Need Bash Version 5.x" && exit 1
 
 main(){
     numbers=$1
