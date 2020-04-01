@@ -17,42 +17,42 @@
 }
 
  @test "encode OMG" {
-  skip
+  #skip
   run bash affine_cipher.sh encode 21 3 "OMG"
   [ "$status" -eq 0 ]
   [ "$output" == "lvz" ]
 }
 
  @test "encode O M G" {
-  skip
+  #skip
   run bash affine_cipher.sh encode 25 47 "O M G"
   [ "$status" -eq 0 ]
   [ "$output" == "hjp" ]
 }
 
  @test "encode mindblowingly" {
-  skip
+  #skip
   run bash affine_cipher.sh encode 11 15 "mindblowingly"
   [ "$status" -eq 0 ]
   [ "$output" == "rzcwa gnxzc dgt" ]
 }
 
  @test "encode numbers" {
-  skip
+  #skip
   run bash affine_cipher.sh encode 3 4 "Testing,1 2 3, testing."
   [ "$status" -eq 0 ]
   [ "$output" == "jqgjc rw123 jqgjc rw" ]
 }
 
  @test "encode deep thought" {
-  skip
+  #skip
   run bash affine_cipher.sh encode 5 17 "Truth is fiction."
   [ "$status" -eq 0 ]
   [ "$output" == "iynia fdqfb ifje" ]
 }
 
  @test "encode all the letters" {
-  skip
+  #skip
   run bash affine_cipher.sh encode 17 33 "The quick brown fox jumps over the lazy dog."
   [ "$status" -eq 0 ]
   [ "$output" == "swxtj npvyk lruol iejdc blaxk swxmh qzglf" ]

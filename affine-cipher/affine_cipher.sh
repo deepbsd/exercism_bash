@@ -28,14 +28,17 @@ get_char(){
 encode(){
     key_a=$1; key_b=$2; input=$3; output=""
     #echo "$input"
+    re='[0-9]'
     for (( i=0; i<${#input}; i++ )) ; do
         char="$( echo ${input:$i:1})"
         orig_index=$(get_index "$char")
-        substitution=$((($key_a*$orig_index+$key_b)%26))
+        [[ ! "$char" =~ $re ]] && \
+            substitution=$((($key_a*$orig_index+$key_b)%26))\
+            && output+="${letter_map[$substitution]}"\
+            || output+="$char" 
         #echo "$char = $orig_index subst = $substitution sub = ${letter_map[$substitution]}"
-        output+="${letter_map[$substitution]}"
     done
-    echo "$output" && exit 0
+    echo "$output" | sed 's/.\{5\}/& /g' | awk '{$1=$1;print}' && exit 0
 }
 
 decode(){
@@ -43,10 +46,11 @@ decode(){
 }
 
 main(){
-    method=$1; key_a=$2; key_b=$3; input=$4
+    method=$1; key_a=$2; key_b=$3
 
+    input="$( echo "$4" | tr '[:upper:]' '[:lower:]' | \
+        tr -d '[:punct:]' | tr -d '[:space:]' )"
     [ "$method" == 'encode' ] && encode $key_a $key_b $input
     [ "$method" == 'decode' ] && decode $key_a $key_b $input
-
 }
 main "$@"
