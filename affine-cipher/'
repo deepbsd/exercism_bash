@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+
+letters=( ' ' 'a' 'b' 'c' 'd' 'e' \
+    'f' 'g' 'h' 'i' 'j' 'k' 'l' 'm' 'n'\
+    'o' 'p' 'q' 'r' 's' 't' 'u' 'v' 'w'\
+    'x' 'y' 'z')
+
+declare -A letter_map
+letter_map=( [1]='a' [2]='b' [3]='c'\
+    [4]='d' [5]='e' [6]='f' [7]='g'\
+    [8]='h' [9]='i' [10]='j' [11]='k'\
+    [12]='l' [13]='m' [14]='n' [15]='o'\
+    [16]='p' [17]='q' [18]='r' [19]='s'\
+    [20]='t' [21]='u' [22]='v' [23]='w'\
+    [24]='x' [25]='y' [26]='z')
+
+get_index(){
+    letter=$1
+    for (( index=0; index<"${#letters[@]}"; index++ )); do
+        [[ "${letter}" = "${letters[$index]}" ]] && echo $index
+    done
+}
+
+encode(){
+    key_a=$1
+    key_b=$2
+    input=$3
+    output=""
+    echo "$input"
+    for c in "$input" ; do
+        orig_index="$(get_index $c)"
+        #substitution=
+        echo $orig_index
+    done
+}
+
+decode(){
+    echo 'decoding'
+}
+
+main(){
+    method=$1
+    key_a=$2 
+    key_b=$3
+    input=$4
+
+    [ "$method" == 'encode' ] && encode $key_a $key_b $input
+    [ "$method" == 'decode' ] && decode $key_a $key_b $input
+
+}
+#echo "${letters[26]}"
+main "$@"

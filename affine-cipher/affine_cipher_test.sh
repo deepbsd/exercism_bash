@@ -10,7 +10,7 @@
 }
 
  @test "encode no" {
-  skip
+  #skip
   run bash affine_cipher.sh encode 15 18 "no"
   [ "$status" -eq 0 ]
   [ "$output" == "fu" ]
