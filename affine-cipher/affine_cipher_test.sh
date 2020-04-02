@@ -68,49 +68,49 @@
 # decode
 
  @test "decode exercism" {
-  skip
+  #skip
   run bash affine_cipher.sh decode 3 7 "tytgn fjr"
   [ "$status" -eq 0 ]
   [ "$output" == "exercism" ]
 }
 
  @test "decode a sentence" {
-  skip
+  #skip
   run bash affine_cipher.sh decode 19 16 "qdwju nqcro muwhn odqun oppmd aunwd o"
   [ "$status" -eq 0 ]
   [ "$output" == "anobstacleisoftenasteppingstone" ]
 }
 
  @test "decode numbers" {
-  skip
+  #skip
   run bash affine_cipher.sh decode 25 7 "odpoz ub123 odpoz ub"
   [ "$status" -eq 0 ]
   [ "$output" == "testing123testing" ]
 }
 
  @test "decode all the letters" {
-  skip
+  #skip
   run bash affine_cipher.sh decode 17 33 "swxtj npvyk lruol iejdc blaxk swxmh qzglf"
   [ "$status" -eq 0 ]
   [ "$output" == "thequickbrownfoxjumpsoverthelazydog" ]
 }
 
  @test "decode with no spaces in input" {
-  skip
+  #skip
   run bash affine_cipher.sh decode 17 33 "swxtjnpvyklruoliejdcblaxkswxmhqzglf"
   [ "$status" -eq 0 ]
   [ "$output" == "thequickbrownfoxjumpsoverthelazydog" ]
 }
 
  @test "decode with too many spaces" {
-  skip
+  #skip
   run bash affine_cipher.sh decode 15 16 "vszzm    cly   yd cg    qdp"
   [ "$status" -eq 0 ]
   [ "$output" == "jollygreengiant" ]
 }
 
  @test "decode with a not coprime to m" {
-  skip
+  #skip
   run bash affine_cipher.sh decode 13 5 "Test"
   [ "$status" -eq 1 ]
   [ "$output" == "a and m must be coprime." ]
