@@ -71,17 +71,16 @@ decode(){
         #[[ ! "$char" =~ $re ]] && \
             #substitution=$((($key_a*$orig_index+$key_b)%26))\
             #new_index=$(((((($mmi*$orig_index))-$key_b))%26)) 
-            new_index=$(($mmi*(($orig_index-$key_b))%26)) 
-
-            echo "orig_index: $orig_index new_index: $new_index"
-            substitution="${letter_map[$new_index]}"
-            echo "orig_char: $char  substitution: $substitution"
-            #&& output+="${letter_map[$substitution]}"\
+            new_index=$(($mmi*(($orig_index-$key_b))%26)) #&&\
+            [ "$new_index" -lt 0 ] && new_index=$((26+$new_index)) #&&\
+            #echo "orig_index: $orig_index new_index: $new_index"
+            substitution="${letter_map[$new_index]}" #&&\
+            #echo "orig_char: $char  substitution: $substitution"
+            output+="$substitution"
             #|| output+="$char" 
         #echo "$char = $orig_index subst = $substitution sub = ${letter_map[$substitution]}"
     done
-    #echo "$output" | sed 's/ //g' | awk '{$1=$1;print}' && exit 0
-
+    echo "$output" | sed 's/ //g' | awk '{$1=$1;print}' && exit 0
 }
 
 main(){
@@ -98,5 +97,5 @@ main(){
     [ "$method" == 'encode' ] && encode $key_a $key_b $input
     [ "$method" == 'decode' ] && decode $key_a $key_b $input
 }
-#main "$@"
-main decode 3 7 'tytgn fjr'
+main "$@"
+#main decode 3 7 'tytgn fjr'
