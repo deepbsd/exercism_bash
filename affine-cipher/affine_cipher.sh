@@ -1,12 +1,6 @@
 #!/usr/bin/env bash
 
-letters=( 'a' 'b' 'c' 'd' 'e' \
-    'f' 'g' 'h' 'i' 'j' 'k' 'l' 'm' 'n'\
-    'o' 'p' 'q' 'r' 's' 't' 'u' 'v' 'w'\
-    'x' 'y' 'z')
-
-re='[0-9]'
-declare -A letter_map
+declare -a letters=($(echo {a..z}))
 
 get_index(){
     letter=$1
@@ -39,7 +33,7 @@ encode(){
     for (( i=0; i<${#input}; i++ )) ; do
         char="$( echo ${input:$i:1})"
         orig_index=$(get_index "$char")
-        [[ ! "$char" =~ $re ]] && \
+        [[ ! "$char" =~ [0-9] ]] && \
             substitution=$((($key_a*$orig_index+$key_b)%26))\
             && output+="${letters[$substitution]}"\
             || output+="$char" 
@@ -54,7 +48,7 @@ decode(){
     for (( i=0; i<${#input}; i++ )) ; do
         char="$( echo ${input:$i:1})"
         orig_index=$(get_index "$char")
-        [[ ! "$char" =~ $re ]] && \
+        [[ ! "$char" =~ [0-9] ]] && \
             new_index=$(($mmi*(($orig_index-$key_b))%26)) &&\
             if [ "$new_index" -lt 0 ] ; then new_index=$((26+$new_index)); fi &&\
             substitution="${letters[$new_index]}" &&\
