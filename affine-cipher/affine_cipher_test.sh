@@ -59,7 +59,7 @@
 }
 
  @test "encode with a not coprime to m" {
-  skip
+  #skip
   run bash affine_cipher.sh encode 6 17 "This is a test."
   [ "$status" -eq 1 ]
   [ "$output" == "a and m must be coprime." ]
