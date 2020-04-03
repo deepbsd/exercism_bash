@@ -13,7 +13,7 @@
 }
 
 @test "encode single characters only are encoded without count" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     expected="XYZ"
     run bash run_length_encoding.sh encode "XYZ"
     (( status == 0 ))
@@ -21,7 +21,7 @@
 }
 
 @test "encode string with no single characters" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     expected="2A3B4C"
     run bash run_length_encoding.sh encode "AABBBCCCC"
     (( status == 0 ))
@@ -29,7 +29,7 @@
 }
 
 @test "encode single characters mixed with repeated characters" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     expected="12WB12W3B24WB"
     run bash run_length_encoding.sh encode "WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWB"
     (( status == 0 ))
