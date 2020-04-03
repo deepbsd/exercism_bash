@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-declare -A data
+declare -a data
+declare -a counts
 
 decode(){
     echo "decoding"
@@ -11,12 +12,17 @@ encode(){
     [[ -z "$input" ]] && exit 0
     for (( c=0; c<"${#input}"; c++ )); do
         chr=$(echo "${input:$c:1}")
-        [[ ${!data[@]} =~ $chr ]] && data[$chr]=$((${data[$chr]}+1))\
-        || data[$chr]=1
+        prev_chr=$(echo "${input:$c-1:1}" || echo '') 
+        echo "prev_chr: $prev_chr chr: $chr"
+        [ -z "$prev_chr" ] && data[$c]=$(echo "$chr") && counts[$c]=1 && continue
+        data[$c]=$(echo "$chr") && counts[$c]=$((counts[$c]+1))
+        echo "counts: ${counts[@]}"
+        echo "data: ${data[@]}"
     done
 
-    for k in "${!data[@]}"; do
-        output="${data[$k]}$k$output"
+    for i in "${data[@]}"; do
+        output+="$counts[$i]$data[$i]"
+        echo "count: $counts[$i]  data: $data[$i]"
     done
 
     echo "$output" | sed 's/1//g' && exit 0
