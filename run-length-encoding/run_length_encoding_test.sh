@@ -37,7 +37,7 @@
 }
 
 @test "encode multiple whitespace mixed in string" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     expected="2 hs2q q2w2 "
     run bash run_length_encoding.sh encode "  hsqq qww  "
     (( status == 0 ))
@@ -45,7 +45,7 @@
 }
 
 @test "encode lowercase characters" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     expected="2a3b4c"
     run bash run_length_encoding.sh encode "aabbbcccc"
     (( status == 0 ))
