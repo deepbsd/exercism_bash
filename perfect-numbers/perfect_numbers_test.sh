@@ -19,7 +19,7 @@
 }
 
 @test "Large perfect number is classified correctly" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash perfect_numbers.sh 33550336
     (( status == 0 )) 
     [[ $output == "perfect" ]]
@@ -42,7 +42,7 @@
 }
 
 @test "Large abundant number is classified correctly" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash perfect_numbers.sh 33550335
     (( status == 0 )) 
     [[ $output == "abundant" ]]
@@ -72,7 +72,7 @@
 }
 
 @test "Large deficient number is classified correctly" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash perfect_numbers.sh 33550337
     (( status == 0 )) 
     [[ $output == "deficient" ]]
@@ -88,14 +88,14 @@
 # "Invalid inputs"
 
 @test "Zero is rejected (not a natural number)" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash perfect_numbers.sh 0
     (( status == 1 )) 
     [[ $output == "Classification is only possible for natural numbers." ]]
 }
 
 @test "Negative integer is rejected (not a natural number)" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash perfect_numbers.sh -1
     (( status == 1 )) 
     [[ $output == "Classification is only possible for natural numbers." ]]

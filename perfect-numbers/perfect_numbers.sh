@@ -11,7 +11,8 @@ get_factors(){
     local number=$1; 
     for ((n=1; n<=$number; n++)); do
         [[ "$n" -eq "$number" ]] && continue
-        [[ $((number%n)) == 0 ]] && factors+=("$n")
+        [[ $((number%n)) -eq 0 ]] && factors+=("$n")    
+        #number=$((number/$n))
     done
     #echo "factors: ${factors[@]}"
 }
@@ -23,20 +24,19 @@ get_sum(){
 }
 
 is_prime(){
-    local number=$1; limit=$(echo $((number/2)))
-    for ((n=2; n<=$limit; n++)); do
-        [[ $((number%n)) == 0 ]] && exit 1
-        #echo $((number%n))
-    done
-    return 0
+    check=$(((($1**2)+17)%12))
+    #[[ ${#factors[@]} -ne 1  ]] && return 1
+    [[ $check -eq 6 ]] && return 0
+    return 1
 }
 
 main(){
     input_num=$1
+    [[ $input_num -le 0 ]]  && error && exit 1
+    [[ $(is_prime "$input_num") ]] && echo "deficient" && exit 0
     get_factors "$input_num"
     sum=$(get_sum "$input_num")
     [[ "$sum" -eq "$input_num" ]] && echo "perfect" && exit 0
-    [[ $(is_prime "$input_num") ]] && echo "deficient" && exit 0
     [[ "$sum" -lt "$input_num" ]] && echo "deficient" && exit 0
     echo "abundant" && exit 0
 }
