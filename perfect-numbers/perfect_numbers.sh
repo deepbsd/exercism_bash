@@ -11,10 +11,9 @@ get_factors(){
     local number=$1; 
     for ((n=1; n<=$number; n++)); do
         [[ "$n" -eq "$number" ]] && continue
-        [[ $((number%n)) -eq 0 ]] && factors+=("$n")    
-        #number=$((number/$n))
+        [[ $((number%n)) -eq 0 ]] && factors+=("$n") 
+        [[ $result -eq 0 ]] && factors+=("$n") 
     done
-    #echo "factors: ${factors[@]}"
 }
 
 get_sum(){
@@ -25,7 +24,6 @@ get_sum(){
 
 is_prime(){
     check=$(((($1**2)+17)%12))
-    #[[ ${#factors[@]} -ne 1  ]] && return 1
     [[ $check -eq 6 ]] && return 0
     return 1
 }
