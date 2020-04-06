@@ -12,7 +12,6 @@ get_factors(){
     for ((n=1; n<=$number; n++)); do
         [[ "$n" -eq "$number" ]] && continue
         [[ $((number%n)) -eq 0 ]] && factors+=("$n") 
-        [[ $result -eq 0 ]] && factors+=("$n") 
     done
 }
 
