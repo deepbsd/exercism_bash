@@ -16,12 +16,10 @@ main(){
     done
     if [[ $1 -ge 16 && "${#result}" -gt 1 ]] ; then
         reverse "${result[@]}" 
-        printf ",%s" "${rev_arr[@]}" |  sed 's/^,,//g'
+        printf ",%s" "${rev_arr[@]}" | sed 's/^,,//g'
         exit 0
     fi
-
     [[ "${#result}" -gt 1 ]] && printf ",%s" "${result[@]}" | \
         sed 's/^,//g' || echo "${result[@]}"
 }
-
 main "$@"
