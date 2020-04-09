@@ -66,7 +66,7 @@
 }
 
 @test "reverse two actions" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash secret_handshake.sh 19
     (( status == 0 ))
     [[ $output == "double blink,wink" ]]
