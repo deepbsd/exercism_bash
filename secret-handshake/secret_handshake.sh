@@ -12,7 +12,7 @@ main(){
         (( $num & 1 )) && bits="1$bits" || bits="0$bits"
         [[ "${bits:0:1}" == "1" ]] && result+=("${actions[$count]}") 
         num=$(( num >> 1 )) && ((count++))
-        [[ $count -gt 4 ]] && ((count=count-4)) 
+        [[ $count -gt 4 ]] && ((count=count%4)) 
     done
     if [[ $1 -ge 16 && "${#result}" -gt 1 ]] ; then
         reverse "${result[@]}" 
