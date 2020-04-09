@@ -21,7 +21,7 @@ main(){
     fi
 
     [[ "${#result}" -gt 1 ]] && printf ",%s" "${result[@]}" | \
-        sed 's/^,//g' | sed 's/,$//g' || echo "${result[@]}"
+        sed 's/^,//g' || echo "${result[@]}"
 }
 
 main "$@"
