@@ -73,7 +73,7 @@
 }
 
 @test "reverse all possible actions" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash secret_handshake.sh 31
     (( status == 0 ))
     [[ $output == "jump,close your eyes,double blink,wink" ]]

@@ -3,11 +3,7 @@
 actions=( 'wink' 'double blink' 'close your eyes' 'jump' )
 rev_arr=()
 
-reverse(){
-    for i in "$@"; do
-        rev_arr=( "$i" "${rev_arr[@]}" )
-    done
-}
+reverse(){ for i in "$@"; do rev_arr=( "$i" "${rev_arr[@]}" ); done }
 
 main(){
     result=()
@@ -15,14 +11,14 @@ main(){
     while [[  $num -ne 0 ]]; do
         (( $num & 1 )) && bits="1$bits" || bits="0$bits"
         [[ "${bits:0:1}" == "1" ]] && result+=("${actions[$count]}") 
-        #echo "count: $count  num: $num  bits: $bits result: ${result[@]}"
         num=$(( num >> 1 )) && ((count++))
         [[ $count -gt 4 ]] && ((count=count-4)) 
-        #echo "count: $count  num: $num  bits: $bits result: ${result[@]}"
-        #echo "length: ${#result[@]} actions: ${actions[@]}" && echo
     done
-    [[ $1 -ge 16 ]] && reverse "${result[@]}" && \
-        printf ",%s" "${rev_arr[@]}" | sed 's/^,//g' && exit 0
+    if [[ $1 -ge 16 && "${#result}" -gt 1 ]] ; then
+        reverse "${result[@]}" 
+        printf ",%s" "${rev_arr[@]}" |  sed 's/^,,//g'
+        exit 0
+    fi
 
     [[ "${#result}" -gt 1 ]] && printf ",%s" "${result[@]}" | \
         sed 's/^,//g' | sed 's/,$//g' || echo "${result[@]}"
