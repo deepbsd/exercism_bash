@@ -6,7 +6,7 @@ main(){
     let limit=$1
     output=()
     for n in $(seq 2 $limit); do
-        [[ " ${prime_numbers[@]}" =~ " $n " ]] && output+=( "$n" )
+        [[ " ${prime_numbers[@]} " =~ " $n " ]] && output+=( "$n" )
     done
 
     echo "${output[@]}"
