@@ -20,18 +20,18 @@ get_index(){
 
 
 main(){
-    string=$1; offset=$2; output=""
+    string=$1; offset=$2; re1='[0-9]'; re2="[.!,']" output=""
 
     for (( i=0; i<${#string}; i++ )); do
         char=${string:$i:1}
         [[ $char = ' ' ]] && output+=' ' && continue
-        [[ $char =~ '[0-9]' ]] && output+=$char && continue
+        [[ $char =~ $re1 ]] && output+="$char" && continue
+        [[ $char =~ $re2 ]] && output+="$char" && continue
         index=$( get_index "$char" )
         new_index=$(( index+offset ))
         [[ "$new_index" -gt 25 ]] && new_index=$(( new_index%26 ))
         [[ ${upper[@]} =~ $char ]] && output+=${upper[$new_index]} \
             || output+=${lower[$new_index]}
-        #echo "output: ${output[@]}"
     done
     echo "$output"
 }

@@ -67,7 +67,7 @@
 }
 
 @test "rotate punctuation" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     expected="Gzo'n zvo, Bmviyhv!"
     run bash rotational_cipher.sh "Let's eat, Grandma!" 21
     (( status == 0 ))
@@ -75,7 +75,7 @@
 }
 
 @test "rotate all letters" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     expected="Gur dhvpx oebja sbk whzcf bire gur ynml qbt."
     run bash rotational_cipher.sh "The quick brown fox jumps over the lazy dog." 13
     (( status == 0 ))
