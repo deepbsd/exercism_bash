@@ -20,19 +20,20 @@ generate(){
 }
 
 modifier(){
-    local score=$1
-    echo $(((score-10)/2))
+    local constitution=$1
+    [[ $((constitution%2)) -ne 0 ]] && ((constitution-=1))
+    echo "$(((constitution-10)/2))"
 }
 
 hitpoints(){
-    echo "$((${abilities[constitution]} + 10))"
+    constitution_modifier=$(( (${abilities[constitution]}-10)/2 ))
+    echo "$((constitution_modifier+10))"
 }
 
 main(){
     method=$1; [[ -n $2 ]] && score=$2 
-
     [[ $method =~ modifier ]] && modifier "$score"
     [[ $method =~ generate ]] && generate
-
+    exit 0
 }
 main "$@"
