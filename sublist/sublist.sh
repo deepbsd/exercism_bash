@@ -12,9 +12,6 @@ main(){
     [[ -z $first  && ! -z $second ]] && sub
     [[ -z $second  && ! -z $first ]] && super
 
-    #[[ "${first[@]:0:${#first}-1}" == "${second[@]:0:${#second}-1}" ]] && equal
-    #[[ "${second[@]:0:${#second}-1}" =~ "${first[@]:0:${#first}-1}" ]] && sub
-    #[[ "${first[@]:0:${#first}-1}" =~ "${second[@]:0:${#second}-1}" ]] && super
     [[ "$first" == "$second" ]] && equal
     [[ "$second" =~ "$first" ]] && sub
     [[ "$first" =~ "$second" ]] && super
