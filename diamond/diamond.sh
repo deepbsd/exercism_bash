@@ -9,13 +9,23 @@ get_index(){
     done
 }
 
-main(){
-    letter=$1
-    let_arr=()
-    output=()
-    for letter in $(IFS=' '; eval echo {A..$letter}); do
-        let_arr+=( "$letter" )
+make_space(){
+    num=$1; local output=""
+    for (( n=0; n<$num; n++ )); do
+        output+=" "
     done
+    echo $output
+}
+
+create_line(){
+    char=$1; spaces=$2
+    this_space=$(make_space $spaces)
+    echo $($this_space$char$this_space$char$this_space)
+}
+
+main(){
+    letter=$1; index=$(get_index $letter); local output
+
     
     single=true; local space=""; local line=""
     for ((i=0; i<${#let_arr}; i++)); do
