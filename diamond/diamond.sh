@@ -1,5 +1,13 @@
 #!/usr/bin/env bash
 
+alphabet=( {A..Z} )
+
+get_index(){
+    char=$1
+    for (( i=0; i<${#alphabet}; i++ )); do
+        [[ $char == ${alphabet[$i]} ]] && echo $n
+    done
+}
 
 main(){
     letter=$1
