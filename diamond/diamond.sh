@@ -24,10 +24,12 @@ create_line(){
 }
 
 create_dots(){
-    number=$1; dots=''
+    number=$1; dots=''; line=''
     for ((i=0; i<$number; i++)){
         dots+='.'
-        echo $dots
+        [[ $i -lt 1 ]] && line="${alphabet[$i]}" && echo $line && continue
+        line="${alphabet[$i]}${dots}${alphabet[$i]}"
+        echo $line
     }
     for ((i=${#dots}; i>=0; i--)){
         dots=${dots%.}
