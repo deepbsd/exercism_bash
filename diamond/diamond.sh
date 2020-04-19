@@ -23,6 +23,18 @@ create_line(){
     echo $($this_space$char$this_space$char$this_space)
 }
 
+create_dots(){
+    number=$1; dots=''
+    for ((i=0; i<$number; i++)){
+        dots+='.'
+        echo $dots
+    }
+    for ((i=${#dots}; i>=0; i--)){
+        dots=${dots%.}
+        echo $dots
+    }
+}
+
 main(){
     letter=$1; index=$(get_index $letter); local output
 
@@ -43,7 +55,7 @@ main(){
        echo "$output"
     done
 
-
+    create_dots 5
 
 }
 
