@@ -4,8 +4,11 @@ alphabet=( {A..Z} )
 
 get_index(){
     char=$1
+
+    
     for (( i=0; i<${#alphabet}; i++ )); do
-        [[ $char == ${alphabet[$i]} ]] && echo $n
+        echo "trying: $i"
+        [[ $char == ${alphabet[$i]} ]] && echo $n && break
     done
 }
 
@@ -24,22 +27,29 @@ create_line(){
 }
 
 create_dots(){
-    number=$1; dots=''; line=''
-    for ((i=0; i<$number; i++)){
-        dots+='.'
+    char=$1; number=$(get_index $char); dots=''; line='';
+
+    echo "index: $number"
+
+    for ((i=0; i<$number; i++)) {
         [[ $i -lt 1 ]] && line="${alphabet[$i]}" && echo $line && continue
+        dots+='.'
         line="${alphabet[$i]}${dots}${alphabet[$i]}"
         echo $line
     }
-    for ((i=${#dots}; i>=0; i--)){
+    for ((i=${#dots}-1; i>=0; i--)){
         dots=${dots%.}
-        echo $dots
+        line="${alphabet[$i]}${dots}${alphabet[$i]}"
+        [[ $i -lt 1 ]] && line="${alphabet[$i]}" && echo $line && continue
+        echo $line
+
     }
 }
 
 main(){
     letter=$1; index=$(get_index $letter); local output
 
+    create_dots $letter && exit 0
     
     single=true; local space=""; local line=""
     for ((i=0; i<${#let_arr}; i++)); do
@@ -57,7 +67,7 @@ main(){
        echo "$output"
     done
 
-    create_dots 5
+    
 
 }
 
