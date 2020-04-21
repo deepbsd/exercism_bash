@@ -1,14 +1,13 @@
 #!/usr/bin/env bash
 
-alphabet=( {A..Z} )
+declare -a alphabet=( {A..Z} )
 
 get_index(){
     char=$1
-
-    
-    for (( i=0; i<${#alphabet}; i++ )); do
-        echo "trying: $i"
-        [[ $char == ${alphabet[$i]} ]] && echo $n && break
+    #echo "length: ${#alphabet[@]} char: $char" 
+    for (( i=0; i<${#alphabet[@]}; i++ )); do
+        #echo "trying: ${alphabet[$i]}"
+        [[ $char == ${alphabet[$i]} ]] && echo $i && break
     done
 }
 
@@ -31,7 +30,7 @@ create_dots(){
 
     echo "index: $number"
 
-    for ((i=0; i<$number; i++)) {
+    for (( i=0; i<=${number}; i++ )) {
         [[ $i -lt 1 ]] && line="${alphabet[$i]}" && echo $line && continue
         dots+='.'
         line="${alphabet[$i]}${dots}${alphabet[$i]}"
@@ -49,23 +48,24 @@ create_dots(){
 main(){
     letter=$1; index=$(get_index $letter); local output
 
+
     create_dots $letter && exit 0
     
-    single=true; local space=""; local line=""
-    for ((i=0; i<${#let_arr}; i++)); do
-        [[ "$single" ]] && line+="${let_arr[$i]}" && output+=( "$line" )
-        if [[ ! "$single" ]]; then 
-            space=" "; single=false
-            line+="${let_arr[$i]}${space}${let_arr[$i]}"
-            output+=( "$line" )
-            echo "$output"
-        fi
-    done
+    #single=true; local space=""; local line=""
+    #for ((i=0; i<${#let_arr}; i++)); do
+    #    [[ "$single" ]] && line+="${let_arr[$i]}" && output+=( "$line" )
+    #    if [[ ! "$single" ]]; then 
+    #        space=" "; single=false
+    #        line+="${let_arr[$i]}${space}${let_arr[$i]}"
+    #        output+=( "$line" )
+    #        echo "$output"
+    #    fi
+    #done
 
-    for (( i="${#let_arr}-1"; i>=0; i-- )); do
-       line="${space}${let_arr[$i]}${space}"
-       echo "$output"
-    done
+    #for (( i="${#let_arr}-1"; i>=0; i-- )); do
+    #   line="${space}${let_arr[$i]}${space}"
+    #   echo "$output"
+    #done
 
     
 
