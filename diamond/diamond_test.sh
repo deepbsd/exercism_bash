@@ -14,7 +14,7 @@ EOT
 }
 
 @test "Degenerate case with no row containing 3 distinct groups of spaces" {
-  [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
   expected="$(cat << EOT
  A 
 B B

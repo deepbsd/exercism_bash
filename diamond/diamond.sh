@@ -2,6 +2,8 @@
 
 declare -a alphabet=( {A..Z} )
 
+error(){ echo 'invalid input' && exit 1; }
+
 get_index(){
     char=$1
     for (( i=0; i<${#alphabet[@]}; i++ )); do
@@ -12,43 +14,31 @@ get_index(){
 make_space(){
     num=$1; local output=''
     for (( n=0; n<$num; n++ )); do
-        #output+='.'
         output+=' '
     done
     echo "$output"
 }
 
-create_line(){
-    char=$1; spaces=$2
-    this_space=$(make_space $spaces)
-    echo $($this_space$char$this_space$char$this_space)
-}
-
 main(){
-    char=$1; number=$(get_index $char); dots=' '; line='';
-
-    half_length=$(((number/2)+(number/2)))  
-    echo "half_length: $half_length"
-    [[ $(($half_length%2)) -eq 0 ]] && ((half_length++))
+    [[ ! $1 =~ ^[A-Z]$ ]] && error
+    char=$1; number=$(get_index $char); inner=' '; line=''; half_length=$number
 
     for (( i=0; i<=${number}; i++ )) {
         spaces=$(make_space $half_length)
         [[ $i -lt 1 ]] && line="${alphabet[$i]}" && echo "$spaces$line" && half_length=$((--half_length)) && continue
-        line="${spaces}${alphabet[$i]}${dots}${alphabet[$i]}"
+        line="${spaces}${alphabet[$i]}${inner}${alphabet[$i]}"
         echo "$line"
-        dots+='  '
+        inner+='  '
         half_length=$((--half_length))
     }
-    dots=${dots%  }
+    inner=${inner%  }
     for ((i=$number-1; i>=0; i--)){
-        dots=${dots%  }
+        inner=${inner%  }
         spaces+=' '
-        line="${spaces}${alphabet[$i]}${dots}${alphabet[$i]}"
+        line="${spaces}${alphabet[$i]}${inner}${alphabet[$i]}"
         [[ $i -lt 1 ]] && line="${spaces}${alphabet[$i]}" && echo "$line" && continue
         echo "$line"
     }
-
     exit 0
 }
-
 main "$@"
