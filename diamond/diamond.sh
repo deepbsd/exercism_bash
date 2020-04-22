@@ -14,7 +14,7 @@ get_index(){
 make_space(){
     num=$1; local output=""
     for (( n=0; n<$num; n++ )); do
-        output+=" "
+        output+="."
     done
     echo $output
 }
@@ -26,22 +26,29 @@ create_line(){
 }
 
 create_dots(){
-    char=$1; number=$(get_index $char); dots=''; line='';
+    char=$1; number=$(get_index $char); dots='.'; line='';
+    half_length=$((((number+3)/2)+2))
 
     echo "index: $number"
 
     for (( i=0; i<=${number}; i++ )) {
-        [[ $i -lt 1 ]] && line="${alphabet[$i]}" && echo $line && continue
-        dots+='.'
-        line="${alphabet[$i]}${dots}${alphabet[$i]}"
+        #echo "spaces: $spaces"
+        spaces=$(make_space $half_length)
+        [[ $i -lt 1 ]] && line="${alphabet[$i]}" && echo "${spaces}$line" && half_length=$((--half_length)) && continue
+        line="${spaces}${alphabet[$i]}${dots}${alphabet[$i]}"
         echo $line
+        dots+='..'
+        half_length=$((--half_length))
     }
-    for ((i=${#dots}-1; i>=0; i--)){
-        dots=${dots%.}
-        line="${alphabet[$i]}${dots}${alphabet[$i]}"
-        [[ $i -lt 1 ]] && line="${alphabet[$i]}" && echo $line && continue
+    dots=${dots%..}
+    #half_length=$((((number+3)/2)+1))
+    #spaces=$(make_space $half_length)
+    for ((i=$number-1; i>=0; i--)){
+        spaces+="."
+        dots=${dots%..}
+        line="${spaces}${alphabet[$i]}${dots}${alphabet[$i]}"
+        [[ $i -lt 1 ]] && line="${alphabet[$i]}" && echo ${spaces}$line && continue
         echo $line
-
     }
 }
 
