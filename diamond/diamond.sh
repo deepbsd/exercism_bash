@@ -27,9 +27,7 @@ create_line(){
 
 create_dots(){
     char=$1; number=$(get_index $char); dots='.'; line='';
-    half_length=$((((number+3)/2)+2))
-
-    echo "index: $number"
+    half_length=$(((number/2)+(number/2)+1))
 
     for (( i=0; i<=${number}; i++ )) {
         #echo "spaces: $spaces"
