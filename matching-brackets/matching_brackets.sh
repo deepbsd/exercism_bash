@@ -10,15 +10,15 @@ say_false(){ echo false && exit 0; }
 error(){ echo 'invalid input' && exit 1; }
 
 index_of(){
-    for (( i=0; i<${#openers[@]}; i++ )){
-        [[ $1 == ${openers[$i]} ]] && echo $i
+    for (( i=0; i<${#closers[@]}; i++ )){
+        [[ $1 == ${closers[$i]} ]] && echo $i
     }
 }
 
 main(){
     input=$1
-    for ((c=0; c<${#input[@]}; c++)){
-        [[ [\[\]\(\){}] =~ $c ]] && stack+=( $c )
+    for ((c=0; c<${#input}; c++)){
+        [[ [\(\)[]{}] =~ "${input:$c:1}" ]] && stack+=( "${input:$c:1}" )
     }
     echo "${stack[@]}" 
 
