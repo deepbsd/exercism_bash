@@ -25,8 +25,8 @@ main(){
 
     for (( i=0; i<=${number}; i++ )) {
         spaces=$(make_space $half_length)
-        [[ $i -lt 1 ]] && line="${alphabet[$i]}" && echo "$spaces$line" && half_length=$((--half_length)) && continue
-        line="${spaces}${alphabet[$i]}${inner}${alphabet[$i]}"
+        [[ $i -lt 1 ]] && line="${alphabet[$i]}" && echo "$spaces$line$spaces" && half_length=$((--half_length)) && continue
+        line="${spaces}${alphabet[$i]}${inner}${alphabet[$i]}${spaces}"
         echo "$line"
         inner+='  '
         half_length=$((--half_length))
@@ -35,8 +35,8 @@ main(){
     for ((i=$number-1; i>=0; i--)){
         inner=${inner%  }
         spaces+=' '
-        line="${spaces}${alphabet[$i]}${inner}${alphabet[$i]}"
-        [[ $i -lt 1 ]] && line="${spaces}${alphabet[$i]}" && echo "$line" && continue
+        line="${spaces}${alphabet[$i]}${inner}${alphabet[$i]}${spaces}"
+        [[ $i -lt 1 ]] && line="${spaces}${alphabet[$i]}${spaces}" && echo "$line" && continue
         echo "$line"
     }
     exit 0
