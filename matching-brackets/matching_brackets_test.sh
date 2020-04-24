@@ -32,7 +32,7 @@
 }
 
 @test "wrong closing bracket" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash matching_brackets.sh "{]"
     (( status == 0 )) 
     [[ $output == "false" ]]
