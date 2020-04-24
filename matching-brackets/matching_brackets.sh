@@ -7,7 +7,6 @@ declare -a stack=()
 
 say_true(){ echo true && exit 0; }
 say_false(){ echo false && exit 0; }
-error(){ echo 'invalid input' && exit 1; }
 
 index_of(){
     for (( i=0; i<${#closers[@]}; i++ )){
