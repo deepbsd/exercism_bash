@@ -20,10 +20,11 @@ main(){
         [[ [\(\)[]{}] =~ "${input:$c:1}" ]] && stack+=( "${input:$c:1}" )
     }
     echo "stack: ${stack[@]} length: ${#stack[@]}"
-    for (( i=0; i<${#stack[@]}-1; i++ )); do
+    for (( i=0; i<${#stack[@]}; i++ )); do
         c=${stack[$i]}
-        echo "c: $c  closers: ${closers[@]}"
+        echo "c: $c  closers: ${closers[@]} closers_c_idx: ${closers[$(index_of $c)]}"
         echo "closer: ${closers[$(index_of $c)]}   pairs[closer]: ${pairs[${openers[$(index_of $c)]}]}"
+        echo "previous in stack: ${stack[$i-1]}"
         if [[ "${closers[@]}" =~ "$c" ]]; then
             echo 'closer'
             if [[ ${closers[$(index_of $c)]} == ${pairs[${openers[$(index_of $c)]}]} && 
@@ -33,7 +34,7 @@ main(){
             fi
         fi
     done
-    echo "stack length: ${#stack[@]}"
+    #echo "stack length: ${#stack[@]}"
     [[ ${#stack[@]} -eq 0 ]] && say_true || say_false
 }
 main "$@"
