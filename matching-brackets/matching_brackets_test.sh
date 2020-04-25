@@ -74,35 +74,35 @@
 }
 
 @test "unopened closing brackets" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash matching_brackets.sh "{[)][]}"
     (( status == 0 )) 
     [[ $output == "false" ]]
 }
 
 @test "unpaired and nested brackets" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash matching_brackets.sh "([{])"
     (( status == 0 )) 
     [[ $output == "false" ]]
 }
 
 @test "paired and wrong nested brackets" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash matching_brackets.sh "[({]})"
     (( status == 0 )) 
     [[ $output == "false" ]]
 }
 
 @test "paired and incomplete brackets" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash matching_brackets.sh "{}["
     (( status == 0 )) 
     [[ $output == "false" ]]
 }
 
 @test "too many closing brackets" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash matching_brackets.sh "[]]"
     (( status == 0 )) 
     [[ $output == "false" ]]
