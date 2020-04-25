@@ -19,10 +19,11 @@ main(){
     for ((c=0; c<${#input}; c++)){
         [[ [\(\)[]{}] =~ "${input:$c:1}" ]] && stack+=( "${input:$c:1}" )
     }
+    [[ ${stack:0:1} != "" && ${closers[@]} =~ ${stack:0:1} ]] && say_false
     echo "stack: ${stack[@]} length: ${#stack[@]}"
     for (( i=0; i<${#stack[@]}; i++ )); do
         c=${stack[$i]}
-        echo "c: $c  closers: ${closers[@]} closers_c_idx: ${closers[$(index_of $c)]}"
+        echo "index: $i  c: $c  closers: ${closers[@]} closers_c_idx: ${closers[$(index_of $c)]}"
         echo "closer: ${closers[$(index_of $c)]}   pairs[closer]: ${pairs[${openers[$(index_of $c)]}]}"
         echo "previous in stack: ${stack[$i-1]}"
         if [[ "${closers[@]}" =~ "$c" ]]; then
