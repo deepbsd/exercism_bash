@@ -3,7 +3,6 @@
 declare -A pairs=( ['{']='}' ['[']=']' ['(']=')' )
 declare -a openers=( '{' '[' '(' )
 declare -a closers=( '}' ']' ')' )
-declare -a stack=()
 
 say_true(){ echo true && exit 0; }
 say_false(){ echo false && exit 0; }
@@ -13,24 +12,6 @@ index_of(){
         [[ $1 == ${closers[$i]} ]] && echo $i
     }
 }
-
-#pop2(){
-#    arr=( "$@" )
-#    echo "before: arr: ${arr[@]} length: ${#arr[@]}"
-#    for (( i=0; i<${#arr{@}}; i++ )); do
-#        c=${arr[$i]}
-#        if [[ "${closers[@]}" =~ "$c" ]]; then
-#            if [[ ${closers[$(index_of $c)]} == ${pairs[${openers[$(injdex_of $c)]}]} 
-#                && ${stack[$i-1]} == ${openers[$(index_of $c)]} ]]; then
-#                unset ${arr[$i-1]} && unset ${arr[$i-1]}
-#            fi
-#        fi
-#    done
-#    unset arr[-1]
-#    unset arr[-1]
-#    echo "after: "
-#    echo "${arr[@]}"
-#}
 
 main(){
     input=$1; stack_dup=""
