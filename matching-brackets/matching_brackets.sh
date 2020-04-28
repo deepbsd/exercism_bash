@@ -19,6 +19,7 @@ main(){
         [[ [\(\)[]{}] =~ "${input:$c:1}" ]] && stack+="${input:$c:1}"
     }
     [[ ${stack:0:1} != "" && ${closers[@]} =~ ${stack:0:1} ]] && say_false
+    stack_dup="${stack}"
     echo "stack: ${stack} length: ${#stack}"
     for (( i=0; i<${#stack}; i++ )); do
         c=${stack:$i:1}
