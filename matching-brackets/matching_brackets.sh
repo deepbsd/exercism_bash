@@ -9,7 +9,7 @@ say_false(){ echo false && exit 0; }
 
 index_of(){
     for (( i=0; i<${#closers[@]}; i++ )){
-        [[ $1 == ${closers[$i]} ]] && echo $i
+        [[ $1 == ${closers[$i]} ]] && echo "$i"
     }
 }
 
@@ -18,7 +18,6 @@ main(){
     for ((c=0; c<${#input}; c++)){
         [[ [\(\)[]{}] =~ "${input:$c:1}" ]] && stack+="${input:$c:1}"
     }
-    echo "stack: ${stack} length: ${#stack}"
     [[ ${stack:0:1} != "" && ${closers[@]} =~ ${stack:0:1} ]] && say_false
     echo "stack: ${stack} length: ${#stack}"
     for (( i=0; i<${#stack}; i++ )); do
