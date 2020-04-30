@@ -5,7 +5,7 @@ days=( null 'first' 'second' 'third' 'fourth' 'fifth' 'sixth' 'seventh' 'eighth'
 gifts=( null 'and a Partridge in a Pear Tree' 'two Turtle Doves' 'three French Hens' 'four Calling Birds' 'five Gold Rings' 'six Geese-a-Laying' 'seven Swans-a-Swimming' 'eight Maids-a-Milking' 'nine Ladies Dancing' 'ten Lords-a-Leaping' 'eleven Pipers Piping' 'twelve Drummers Drumming' )
 
 function say_prefix(){
-    day_num=$1; 
+    day_num=$1 
     prefix="On the ${days[$day_num]} day of Christmas my true love gave to me: $(say_gifts $day_num)"
     [[ $day_num -eq 1 ]] && echo "${prefix}" | sed 's/and a Partridge/a Partridge/g' || echo "${prefix}"
 }
