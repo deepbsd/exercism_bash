@@ -10,11 +10,11 @@ main(){
     opened=''; closed=''; previous=''
 
     while read -n1 c; do
-       [[ $c =~ $openers ]] && opened=$c$opened
+        [[ $c =~ $openers ]] && opened=$c$opened
 
         if [[ $c =~ $closers ]]; then
            
-           previous="${opened:0:1}" && closed=$c$closed
+            previous="${opened:0:1}" && closed=$c$closed
 
             if [[ ($previous == '[' && $c == ']') || \
                 ($previous == '(' && $c == ')') || \
