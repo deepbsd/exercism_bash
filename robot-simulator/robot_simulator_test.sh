@@ -56,14 +56,14 @@
 }
 
 @test "changes the direction from south to west" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash robot_simulator.sh 0 0 south R
     (( status == 0 ))
     [[ $output == "0 0 west" ]]
 }
 
 @test "changes the direction from west to north" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash robot_simulator.sh 0 0 west R
     (( status == 0 ))
     [[ $output == "0 0 north" ]]
@@ -73,28 +73,28 @@
 # rotates the robot's direction 90 degrees counter-clockwise
 
 @test "changes the direction from north to west" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash robot_simulator.sh 0 0 north L
     (( status == 0 ))
     [[ $output == "0 0 west" ]]
 }
 
 @test "changes the direction from west to south" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash robot_simulator.sh 0 0 west L
     (( status == 0 ))
     [[ $output == "0 0 south" ]]
 }
 
 @test "changes the direction from south to east" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash robot_simulator.sh 0 0 south L
     (( status == 0 ))
     [[ $output == "0 0 east" ]]
 }
 
 @test "changes the direction from east to north" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash robot_simulator.sh 0 0 east L
     (( status == 0 ))
     [[ $output == "0 0 north" ]]

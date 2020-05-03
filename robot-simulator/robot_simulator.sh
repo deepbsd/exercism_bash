@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-directions=( 'north' 'east' 'south' 'west' )
-bearings=( [north]=0 [east]=1 [south]=2 [west]=3 )
+declare -a directions=( 'north' 'east' 'south' 'west' )
+declare -A bearings=( [north]=0 [east]=1 [south]=2 [west]=3 )
 
 advance(){
     echo "$1"
@@ -15,13 +15,16 @@ main(){
 
     [[ -n $4 ]] && \
     for c in "$args"; do
+        #echo "bearing_index: ${bearings[$bearing]}"
         case $args in
-            'R') let "index=${bearings[ $bearing ]}" 
-                echo "new_index: $index"
-                bearing="${directions[ $index ]}" #;;
-                echo "index: $index old_bearing: $3 new_bearing: $bearing";;
-            'L') let index="${bearings[$3]}-1"
+            'R') let "index = (${bearings[$bearing]} + 1) % 4" 
+                #echo "new_index: $index"
                 bearing="${directions[ $index ]}" ;;
+                #echo "index: $index old_bearing: $3 new_bearing: $bearing";;
+            'L') let "index = (${bearings[$bearing]} - 1) % 4"
+                #echo "new_index: $index"
+                bearing="${directions[ $index ]}" ;;
+                #echo "index: $index old_bearing: $3 new_bearing: $bearing";;
             'A') advance "$bearing" ;;
              * ) echo "Argument $c not valid."
         esac
