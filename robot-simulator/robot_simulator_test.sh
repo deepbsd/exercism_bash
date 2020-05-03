@@ -25,14 +25,14 @@
 }
 
 @test "Robots are created with a default position and direction" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash robot_simulator.sh
     (( status == 0 ))
     [[ $output == "0 0 north" ]]
 }
 
 @test "Negative positions are allowed" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash robot_simulator.sh -1 -1 south
     (( status == 0 ))
     [[ $output == "-1 -1 south" ]]
