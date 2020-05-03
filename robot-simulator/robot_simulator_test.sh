@@ -104,28 +104,28 @@
 # moves the robot forward 1 space in the direction it is pointing
 
 @test "increases the y coordinate one when facing north" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash robot_simulator.sh 0 0 north A
     (( status == 0 ))
     [[ $output == "0 1 north" ]]
 }
 
 @test "decreases the y coordinate by one when facing south" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash robot_simulator.sh 0 0 south A
     (( status == 0 ))
     [[ $output == "0 -1 south" ]]
 }
 
 @test "increases the x coordinate by one when facing east" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash robot_simulator.sh 0 0 east A
     (( status == 0 ))
     [[ $output == "1 0 east" ]]
 }
 
 @test "decreases the x coordinate by one when facing west" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash robot_simulator.sh 0 0 west A
     (( status == 0 ))
     [[ $output == "-1 0 west" ]]
@@ -137,28 +137,28 @@
 # the correct position and direction
 
 @test "instructions to move east and north from README" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash robot_simulator.sh 7 3 north RAALAL
     (( status == 0 ))
     [[ $output == "9 4 west" ]]
 }
 
 @test "instructions to move west and north" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash robot_simulator.sh 0 0 north LAAARALA
     (( status == 0 ))
     [[ $output == "-4 1 west" ]]
 }
 
 @test "instructions to move west and south" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash robot_simulator.sh 2 -7 east RRAAAAALA
     (( status == 0 ))
     [[ $output == "-3 -8 south" ]]
 }
 
 @test "instructions to move east and north" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash robot_simulator.sh 8 4 south LAAARRRALLLL
     (( status == 0 ))
     [[ $output == "11 5 north" ]]
@@ -168,14 +168,14 @@
 # error conditions
 
 @test "invalid direction" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash robot_simulator.sh 0 0 foo
     (( status == 1 ))
     [[ $output == *"invalid direction"* ]]
 }
 
 @test "invalid instructions" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash robot_simulator.sh 0 0 north LRAX
     (( status == 1 ))
     [[ $output == *"invalid instruction"* ]]
