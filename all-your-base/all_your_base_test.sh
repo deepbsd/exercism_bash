@@ -10,14 +10,14 @@
 }
 
 @test 'binary to single decimal' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash all_your_base.sh 2 "1 0 1" 10
     (( status == 0 ))
     [[ "$output" == "5" ]]
 }
 
 @test 'single decimal to binary' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash all_your_base.sh 10 "5" 2
     (( status == 0 ))
     [[ "$output" == "1 0 1" ]]
