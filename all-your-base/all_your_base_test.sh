@@ -115,35 +115,35 @@
 }
 
 @test 'invalid positive digit' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash all_your_base.sh 2 "1 2 1 0 1 0" 10
     (( status > 0 ))
     [[ -n "$output" ]]
 }
 
 @test 'output base is one' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash all_your_base.sh 2 "1 0 1 0 1 0" 1
     (( status > 0 ))
     [[ -n "$output" ]]
 }
 
 @test 'output base is zero' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash all_your_base.sh 10 "7" 0
     (( status > 0 ))
     [[ -n "$output" ]]
 }
 
 @test 'output base is negative' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash all_your_base.sh 2 "1" -7
     (( status > 0 ))
     [[ -n "$output" ]]
 }
 
 @test 'both bases are negative' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash all_your_base.sh -2 "1" -7
     (( status > 0 ))
     [[ -n "$output" ]]
