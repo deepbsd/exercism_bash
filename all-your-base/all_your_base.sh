@@ -4,7 +4,7 @@ toBase10(){
     number=( $1 ); local -i total=0; inBase=$2
     length=$(( ${#number[@]}-1 ))
     for i in "${number[@]}"; do
-        (( $i>=$inBase )) || (( $i<0 )) && exit 1
+        (( $i>=$inBase )) || (( $i<0 )) && return 1
         total+="$(( $i*($inBase**$length) ))"
         ((length--))
     done
@@ -16,7 +16,7 @@ fromBase10(){
     (( $number <= 0 )) && \
         for (( i=${#targetBase[@]}-1; i>=0; i--)); do 
             echo -n "${targetBase[$i]} "; 
-        done && exit
+        done && return 
     targetBase+=( $(( $number % $outbase )) )
     fromBase10 $number/$outbase $outbase
 }
