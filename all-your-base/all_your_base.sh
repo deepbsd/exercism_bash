@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+targetBase=()
+
 toBase10(){
     number=( $1 ); local -i total=0; inBase=$2
     length=$(( ${#number[@]}-1 ))
@@ -25,7 +27,6 @@ main(){
     inBase=$1; outBase=$3; number=$2
     (( $inBase <= 1 || $outBase <= 1 )) && { echo "Only positive base numbers"; exit 1; }
     inBase10=$(toBase10 "$number" $inBase) || { echo "Invalid number" && exit 1; }
-    targetBase=()
     echo $(fromBase10 "$inBase10" $outBase )
 }
 main "$@"
