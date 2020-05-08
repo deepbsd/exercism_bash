@@ -12,25 +12,29 @@ comments=( null "I don't know why she swallowed the fly. Perhaps she'll die."
 function bridge(){
     local -i current_verse_num=$1; bridge_string=''
     for ((v=$current_verse_num; v>=2; v--)); do
-        bridge_string+="She swallowed the "+${foods[$v]}+" to catch the ${foods[$v-1]}."
-        bridge_string=$( echo ${verse_string} | sed 's/"catch the spider.\n"/"catch the spider that wriggled and jiggled and tickled inside her."/g' )
-        [[ v -eq 2 ]] && bridge_string+="I don't know why she swallowed the fly. Perhaps she'll die!"
+        #bridge_string+="She swallowed the ${foods[$v]} to catch the ${foods[$((v-1))]}. "
+        [[ $v -ne 3 ]] && printf "She swallowed the %s to catch the %s\n" "${foods[$v]}" "${foods[$((v-1))]}. " 
+        #bridge_string+=$(printf "She swallowed the %s to catch the %s. \n" "${foods[$v]}" "${foods[$((v-1))]}")
+        #bridge_string+=$( echo ${verse_string} | sed 's/"catch the spider."/"catch the spider that wriggled and jiggled and tickled inside her."/g' )
+        [[ $v -eq 3 ]] && printf "She swallowed the %s to catch the %s that wriggled and jiggled and tickled inside her.\n" "${foods[$v]}" "${foods[$((v-1))]}"
+        #[[ v -eq 2 ]] && bridge_string+="${comments[$((v-1))]}"
+        [[ $v -eq 2 ]] && printf "%s\n" "${comments[$((v-1))]}"
     done
 
-    printf "%s" $bridge_string
+    #printf "%s" "${bridge_string}"
 }
 
 function say_verse(){
     local -i this_verse=$1
-    why=$(bridge $this_verse)
-    printf  "%s %s. \n%s \n%s\n" "$repeat" "${foods[$this_verse]}" "${comments[$this_verse]}" "${why}"
+    printf  "%s %s. \n%s \n%s" "$repeat" "${foods[$this_verse]}" "${comments[$this_verse]}" "$(bridge $this_verse)"
 }
 
 main(){
     local -i start=$1; local -i end=$2; lyrics=""
     for (( v=$start; v<=$end; v++ )); do
-        lyrics+="$( say_verse $v )"
+        say_verse "$v"
+        [[ $v -ne $end ]] && echo
     done
-    echo  "$lyrics"
+    exit 0
 }
 main "$@"
