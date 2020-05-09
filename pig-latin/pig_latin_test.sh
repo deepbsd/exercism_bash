@@ -165,7 +165,7 @@
 # https://www.gnu.org/software/bash/manual/bash.html#Shell-Expansions
 
 @test "shell globbing" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash pig_latin.sh "pig*"
     (( status == 0 ))
     [[ $output == "ig*pay" ]]

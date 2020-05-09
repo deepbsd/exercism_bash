@@ -10,7 +10,7 @@ translate(){
 }
 
 main(){
-    [[ $# -gt 1 ]] && for word in "$@"; do echo -n "$(translate $word) "; done && exit 0
+    [[ $# -gt 1 ]] && for word in "$@"; do echo -n "$(translate $word) "; done | sed 's/ $//g'&& exit 0
     translate $1
     exit 0
 }
