@@ -10,8 +10,8 @@ translate(){
 }
 
 main(){
-    #echo "how many: $#"
-    [[ "$#" -gt 1 ]] && for w in "$@"; do translate "$w"; done #&& exit 0
+    [[ $# -gt 1 ]] && for word in "$@"; do echo -n "$(translate $word) "; done && exit 0
     translate $1
+    exit 0
 }
 main "$@"
