@@ -7,6 +7,8 @@ declare -A ranges=( [1st]=arrayOfDates[0] [teenth]=$(arrayOfDates.find( date => 
     [last]=arrayOfDates[arrayOfDates.length-1] )
 
 
+
+
 main(){
     yr=$1; month=$2; which=$3; day=$4
 }
