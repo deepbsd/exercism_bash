@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -f
 
 translate(){
     word=$1
@@ -10,7 +11,6 @@ translate(){
 }
 
 main(){
-    [[ "$@" =~ pig_latin.sh ]] && echo 'ig*pay' && exit
     [[ $# -gt 1 ]] && for word in "$@"; do echo -n "$(translate $word) "; done | sed 's/ $//g'&& exit 0
     translate $1
     exit 0
