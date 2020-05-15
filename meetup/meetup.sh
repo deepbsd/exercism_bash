@@ -11,5 +11,6 @@ declare -A ranges=( [1st]=arrayOfDates[0] [teenth]=$(arrayOfDates.find( date => 
 
 main(){
     yr=$1; month=$2; which=$3; day=$4
+    firstDate=$(date -d "${yr}-${month}-01")
 }
 main "$@"
