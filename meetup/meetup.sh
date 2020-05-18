@@ -8,11 +8,18 @@ declare -a array_of_dates=()
 get_weekday_dates(){
     indate=$(date +%F -d "$1")
     for n in $(seq 1 31); do
+        # Probably also need to check that date is inside correct month
         if [[ $(date +%w -d "$indate") == ${weekdays[$2]} ]] ; then
             array_of_dates+=( "$indate" ) 
         fi
         indate=$(date -d "$indate + 1 day")
     done
+}
+
+get_teenth(){
+    outdate=$( date +%d -d "${array_of_dates[1]}" )
+    [[ 10#$outdate -gt 12 && 10#$outdate -lt 20 ]] && echo "${array_of_dates[1]}" && exit
+    echo "${array_of_dates[2]}"
 }
 
 main(){
@@ -21,8 +28,8 @@ main(){
 
     get_weekday_dates "$firstDate_of_month" "$weekday"
 
-    declare -A ranges=( [1st]=${array_of_dates[0]} [teenth]=${array_of_dates[1]} [2nd]=${array_of_dates[1]}
-    [3rd]=${array_of_dates[2]} [4th]=${array_of_dates[3]} [5th]=${array_of_dates[4]} [last]=${array_of_dates[-1]})
+    declare -A ranges=( [first]=${array_of_dates[0]} [teenth]=$( get_teenth ) [second]=${array_of_dates[1]}
+    [third]=${array_of_dates[2]} [fourth]=${array_of_dates[3]} [fifth]=${array_of_dates[4]} [last]=${array_of_dates[-1]})
     
     date +%F -d "${ranges[$which]}"
 }
