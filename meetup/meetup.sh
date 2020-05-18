@@ -27,7 +27,8 @@ main(){
     get_weekday_dates "$firstDate_of_month" "$weekday"
 
     declare -A ranges=( [first]=${array_of_dates[0]} [teenth]=$( get_teenth ) [second]=${array_of_dates[1]}
-    [third]=${array_of_dates[2]} [fourth]=${array_of_dates[3]} [fifth]=${array_of_dates[4]} [last]=${array_of_dates[-1]})
+        [third]=${array_of_dates[2]} [fourth]=${array_of_dates[3]} [fifth]=${array_of_dates[4]} 
+        [last]=${array_of_dates[-1]})
     
     date +%F -d "${ranges[$which]}"
 }
