@@ -2,9 +2,6 @@
 
 declare -A weekdays=( [sunday]=0  [monday]=1 [tuesday]=2 [wednesday]=3 [thursday]=4 [friday]=5 [saturday]=6 )
 
-#declare -A ranges=( [1st]=arrayOfDates[0] [teenth]=$(arrayOfDates.find( date => date > 12)) 
-#    [2nd]=arrayOfDates[1]  [3rd]=arrayOfDates[2] [4th]=arrayOfDates[3] [5th]=arrayOfDates[4] 
-#    [last]=arrayOfDates[arrayOfDates.length-1] )
 
 declare -a array_of_dates=()
 
@@ -16,7 +13,6 @@ get_weekday_dates(){
         fi
         indate=$(date -d "$indate + 1 day")
     done
-    echo "instances:  ${array_of_dates[@]}"
 }
 
 main(){
@@ -25,7 +21,9 @@ main(){
 
     get_weekday_dates "$firstDate_of_month" "$weekday"
 
-    #first_weekday=${weekdays[$(echo $firstDate_of_month | cut -d' ' -f1)]}
-    #echo "first_weekday: ${first_weekday}"
+    declare -A ranges=( [1st]=${array_of_dates[0]} [teenth]=${array_of_dates[1]} [2nd]=${array_of_dates[1]}
+    [3rd]=${array_of_dates[2]} [4th]=${array_of_dates[3]} [5th]=${array_of_dates[4]} [last]=${array_of_dates[-1]})
+    
+    date +%F -d "${ranges[$which]}"
 }
 main "$@"

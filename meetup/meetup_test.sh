@@ -11,7 +11,7 @@
 }
 
 @test "monteenth of August 2013" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash meetup.sh 2013 8 teenth Monday
     (( status == 0 ))
     [[ $output == "2013-08-19" ]]
