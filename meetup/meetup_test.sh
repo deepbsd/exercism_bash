@@ -627,42 +627,42 @@
 }
 
 @test "last Sunday of March 2013" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash meetup.sh 2013 3 last Sunday
     (( status == 0 ))
     [[ $output == "2013-03-31" ]]
 }
 
 @test "last Sunday of April 2013" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash meetup.sh 2013 4 last Sunday
     (( status == 0 ))
     [[ $output == "2013-04-28" ]]
 }
 
 @test "last Wednesday of February 2012" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash meetup.sh 2012 2 last Wednesday
     (( status == 0 ))
     [[ $output == "2012-02-29" ]]
 }
 
 @test "last Wednesday of December 2014" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash meetup.sh 2014 12 last Wednesday
     (( status == 0 ))
     [[ $output == "2014-12-31" ]]
 }
 
 @test "last Sunday of February 2015" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash meetup.sh 2015 2 last Sunday
     (( status == 0 ))
     [[ $output == "2015-02-22" ]]
 }
 
 @test "first Friday of December 2012" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash meetup.sh 2012 12 first Friday
     (( status == 0 ))
     [[ $output == "2012-12-07" ]]
