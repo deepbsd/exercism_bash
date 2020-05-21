@@ -59,14 +59,14 @@
 }
 
 @test "one thousand two hundred thirty-four" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash say.sh 1234
     (( status == 0 ))
     [[ $output == "one thousand two hundred thirty-four" ]]
 }
 
 @test "one million" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash say.sh 1000000
     (( status == 0 ))
     [[ $output == "one million" ]]
@@ -80,7 +80,7 @@
 }
 
 @test "one billion" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash say.sh 1000000000
     (( status == 0 ))
     [[ $output == "one billion" ]]
@@ -94,14 +94,14 @@
 }
 
 @test "numbers below zero are out of range" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash say.sh -1
     (( status == 1 ))
     [[ $output == "input out of range" ]]
 }
 
 @test "numbers above 999,999,999,999 are out of range" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash say.sh 1000000000000
     (( status == 1 ))
     [[ $output == "input out of range" ]]
