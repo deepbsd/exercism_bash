@@ -9,7 +9,7 @@ main(){
         case $opt in
             w) IFS=, read -r w_row w_col <<< "$OPTARG" ;;
             b) IFS=, read -r b_row b_col <<< "$OPTARG" ;;
-            *) : ;;  #ignore invalid
+            *) echo "invalid option" && exit 1 ;;
         esac
     done
     # Handle errors
