@@ -19,8 +19,8 @@ main(){
     [[ $w_col -gt 7 || $b_col -gt 7 ]] && echo "column not on board" && exit 1
     [[ $w_col == $b_col && $w_row == $b_row ]] && echo "cannot occupy same position" && exit 1
     # diagonals
-    local -i diag1=$( abs $(( w_row - b_row )) )
-    local -i diag2=$( abs $(( w_col - b_col )) )
+    local -i diag1=$( abs $(( w_row - b_row )) ) # if the absolute difference between rows and cols
+    local -i diag2=$( abs $(( w_col - b_col )) ) # for white and black queens are equal, they share diagonal
     # can attack
     [[ $w_row == $b_row || $w_col == $b_col || $diag1 == $diag2 ]] && echo true && exit 0
 
