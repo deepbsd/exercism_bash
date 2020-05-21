@@ -3,7 +3,6 @@
 abs(){ echo $(( $1 < 0 ? -$1 : $1 )); } # get absolute value
 
 main(){
-
     local -i w_row w_col b_row b_col
 
     while getopts :w:b: opt; do
@@ -23,8 +22,7 @@ main(){
     local -i diag1=$( abs $(( w_row - b_row )) )
     local -i diag2=$( abs $(( w_col - b_col )) )
     # can attack
-    [[ $w_row == $b_row || $w_col == $b_col ]] && echo true && exit 0
-    [[ $diag1 == 0 || $diag2 == 0 || $diag1 == $diag2 ]] && echo true && exit 0
+    [[ $w_row == $b_row || $w_col == $b_col || $diag1 == $diag2 ]] && echo true && exit 0
 
     echo false
 }
