@@ -73,7 +73,7 @@
 }
 
 @test "one million two thousand three hundred forty-five" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash say.sh 1002345
     (( status == 0 ))
     [[ $output == "one million two thousand three hundred forty-five" ]]
@@ -87,7 +87,7 @@
 }
 
 @test "a big number" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash say.sh  987654321123
     (( status == 0 ))
     [[ $output == "nine hundred eighty-seven billion six hundred fifty-four million three hundred twenty-one thousand one hundred twenty-three" ]]
