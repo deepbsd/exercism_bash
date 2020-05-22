@@ -15,8 +15,8 @@ twenty_to_100() {
 }
 
 hundreds() {
-    local num=$1; s1="${num:0:1}"; s2=${num:1}
-    [[ $s2 -le 20 ]] && s2="${up2_20[$s2]}" || s2=$( twenty_to_100 "$s2" )
+    local num=$1; s1="${num:0:1}"; s2=${num:1} 
+    [[ $((10#$s2)) -le 20 ]] && s2="${up2_20[$s2]}" || s2=$( twenty_to_100 "$s2" )
     [[ $num =~  ^(100|200|300|400|500|600|700|800|900)$ ]] && echo "${up2_20[s1]} hundred" && exit 0
     echo "${up2_20[s1]} hundred $s2" && exit 0
 }
@@ -29,7 +29,7 @@ large_nums(){
     [[ $s1 -le 20 ]] && s1=${up2_20[s1]} || s1=$( main "$s1" )  
     for ((i=0; i<=9; i++)){ even_array+=( $(( $i * $multiplier )) ); } 
     [[ "${even_array[@]}" =~ $num ]] && echo "$s1 $measurement" && exit 0
-    s2=$( main "$s2" ) && echo "$s1 $measurement $s2" && exit 0 
+    s2=$( main "$((10#$s2))" ) && echo "$s1 $measurement $s2" && exit 0 
 }
 
 main(){
