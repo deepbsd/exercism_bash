@@ -2,26 +2,16 @@
 
 main(){
     case $1 in
-        privateKey ) privateKey $2 ;;
-        publicKey ) publicKey $2 $3 $4 ;;
-        secret ) secret $2 $3 $4  ;;
+        privateKey ) privateKey $2   ;;
+        publicKey ) pub_sec $2 $3 $4 ;;
+        secret ) pub_sec $2 $3 $4    ;;
         * ) echo "invalid input" && exit 1 ;;
     esac
+    exit 0
 }
 
-privateKey(){
-    FLOOR=2; CEILING=$(($1-1)); RANGE=$(($CEILING-$FLOOR+1));
-    RESULT=$RANDOM; let "RESULT %= $RANGE"; RESULT=$(($RESULT+$FLOOR));
-    echo "$RESULT" && exit 0
-}
+privateKey(){ echo $(( $RANDOM % ($1 - 2) + 2 )); }
 
-publicKey(){
-    public_key=$(( (( $2**$3 )) % $1 ))
-    echo "$public_key" && exit 0
-}
-
-secret(){
-    echo
-}
+pub_sec(){ echo "$( bc <<< "$2 ^ $3 % $1" )"; } #bash gave many errors so I used bc
 
 main "$@"
