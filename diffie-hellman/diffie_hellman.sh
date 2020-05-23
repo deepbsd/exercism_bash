@@ -10,16 +10,14 @@ main(){
 }
 
 privateKey(){
-    FLOOR=1; CEILING=$1; RANGE=$(($CEILING-$FLOOR+1));
+    FLOOR=2; CEILING=$(($1-1)); RANGE=$(($CEILING-$FLOOR+1));
     RESULT=$RANDOM; let "RESULT %= $RANGE"; RESULT=$(($RESULT+$FLOOR));
-    #echo "i: $1 RESULT: $RESULT"
-    (( $RESULT <= $FLOOR )) && RESULT="$(($RESULT+1))"
-    (( $RESULT >= $CEILING )) && RESULT="$(($RESULT-1))"
     echo "$RESULT" && exit 0
 }
 
 publicKey(){
-    echo
+    public_key=$(( (( $2**$3 )) % $1 ))
+    echo "$public_key" && exit 0
 }
 
 secret(){
