@@ -7,10 +7,10 @@ generateRows(){
         declare -a newRow
         for ((col=0; col<=$i; col++)); do
             if ( $col==$i || $col==0 ); then { newRow+=( 1 ); } 
-            else { newRow+=(rows[i-1][col-1]+rows[i-1][col]); } 
+            else {  newRow+=( ${rows[$i-1][$col-1]}+${rows[$i-1][$col]});  } 
             fi
         done
-        rows+=(newRow)
+        rows+=( "${newRow[@]}" )
     done
     echo "${rows[@]}"
 }
