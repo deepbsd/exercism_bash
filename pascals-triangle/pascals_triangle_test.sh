@@ -12,7 +12,7 @@
 }
 
 @test "single row" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     expected=$(cat <<END
 1
 END
@@ -23,7 +23,7 @@ END
 }
 
 @test "two rows" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     expected=$(cat <<END
  1
 1 1
