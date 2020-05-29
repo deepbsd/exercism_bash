@@ -18,24 +18,32 @@
 #    done
 #}
 
-#genRows1(){
-#    declare -i num=$1
-#    declare -A rows
-#    for ((i=0; i<=$num; i++)); do
-#        rows[$i,0]=1 
-#        rows[$i,$i]=1
-#        for ((j=1; j<$i; j++)); do
-#            a=${rows[$((i-1)),$((j-1))]}
-#            b=${rows[$((i-1)),$j]}
-#            rows[$i,$j]=$(( a + b ))
-#        done
-#    done
-#
-#    for ((j=0; j<=$num; j++)); do
-#        echo "${rows[$num,$j]} "
-#    done
-#    echo
-#}
+genRows1(){
+    declare -i num=$1
+    declare -A rows=( [0,1]=1 )
+    for ((i=0; i<=$num; i++)); do
+        row=()
+        for ((j=1; j<i; j++)); do
+            echo "a: i-1: $((i-1)) j-1:  $((j-1))"
+            echo "b: i-1: $((i-1)) j: $j"
+            a1=$(( $((i-1)) ))
+            a2=$(( $((j-2)) ))
+            a="$a1,$a2"
+            b1=$(( $((i-1)) ))
+            b2=$(( $j ))
+            b="$b1,$b2"
+            echo "a: $a b: $b"
+            rows[$i,$j]=$(( a + b ))
+            row+=( ${rows[$i,$j]} )
+        done
+        echo "row: ${row[@]}"
+    done
+    echo "rows"
+    for row in "${rows[@]}"; do
+        echo "$row[*]"
+    done
+
+}
 
 genRows(){
     declare -A rows=( [0,1]=1 )
@@ -54,11 +62,7 @@ genRows(){
 
 
 main(){
-    genRows "$1"
-    #constructor(num){
-    #    this.rows = this.generateRows(num);
-    #    this.lastRow = this.rows[num-1];
-    #}
+    genRows1 "$1"
 }
 
 main "$@"
