@@ -1,32 +1,25 @@
 #!/usr/bin/env bash
 
-main(){
-    readarray -t inputarr
+main1(){
+    readarray -t lines
+    declare -i count=${#lines[@]} len=${#lines[count -1]}
 
-    # get the max length of a line in input
-    for ch in "${inputarr[@]}"; do
-        (( ${#ch} >= max )) && max=${#ch}
-    done
-    # iterate over and transpose each line
-    for ((i=0; i<max; i++)); do
-        unset line
-        for ch in "${inputarr[@]}"; do
-            letter=${ch:i:1}
-            line+=${letter:-+}
+    for (( i=count-2; i>=0; i-- )); do
+        while [[ ${#lines[i]} -lt ${#lines[i+1]} ]]; do
+            lines[i]="${lines[i]} "
         done
-        line=$(echo -e "${line}" | sed -e 's/+*$//')
-        out+="${line//+/ }"
+        [[ ${#lines[i]} -gt $len ]] && len=${#lines[i]}
     done
 
-    echo -e "$out"
-    ##for line in "${outarr[@]}"; do
-    ##    echo "line: $line"
-    ##done
-    ##echo "arr: ${outarr[@]}"
-    #for ((i=0; i<"${#outarr[@]}"; i++)); do
-    #    echo "${outarr[$i]}"
-    #done
+    for (( i=0; i<$len; ++i )); do
+        transposed=""
+        for line in "${lines[@]}"; do
+            transposed+=${line:i:1}
+        done
+
+        echo "$transposed"
+    done
 }
 
-main "$@"
+main1 "$@"
 
