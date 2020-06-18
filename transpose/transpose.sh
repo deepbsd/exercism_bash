@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-main1(){
+main(){
     readarray -t lines
     count=${#lines[@]} 
     length=${#lines[count-1]}
@@ -20,5 +20,5 @@ main1(){
         echo "$transposed"
     done
 }
-main1 "$@"
+main "$@"
 
