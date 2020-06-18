@@ -11,8 +11,8 @@ main(){
         done
         [[ ${#lines[i]} -gt $max_length ]] && max_length=${#lines[i]}
     done
-
-    for (( i=0; i<$max_length; ++i )); do
+    
+    for (( i=0; i<$max_length; i++ )); do
         transposed=""
         for line in "${lines[@]}"; do
             transposed+=${line:i:1}
