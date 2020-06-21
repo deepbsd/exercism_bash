@@ -1,8 +1,13 @@
 #!/usr/bin/env bash
 
+make_set(){
+    this_set=$(( for val in "$@"; do echo "$val"; done| sort| uniq| xargs ))
+    echo "${this_set[@]}"
+}
+
 primitive_triplets(){
     number_in_triplet=$1
-    declare -a triplets=()
+    declare -a triplet=() triplets=()
     declare -A setTriplets=()
 
     big_start=$(( number_in_triplet**0.5 ))
@@ -16,22 +21,32 @@ primitive_triplets(){
         
         [[ " ${triplet[@]} " =~ "${number_in_triplet}" ]] && triplets+=( $triplet )
     done
-    setTriplets=($(for trip in "${triplets[@]}"; do echo "$trip";done| sort| uniq| xargs ))
+    setTriplets=$( make_set "${triplets[@]}" )
     echo "${setTriplets[@]}"
 }
 
 triplets_in_range(){
     range_start=$1
     range_end=$2
-    triplets = []
-    for x in range(range_start, range_end+1):
-        for y in range(range_start, range_end+1):
-            for z in range(range_start, range_end+1):
-                if is_triplet((x,y,z)):
-                    if triplets.count(tuple(sorted((x,y,z)))) < 1:
-                        triplets.append(tuple(sorted((x,y,z))))
-                        print("triplets: ", triplets)
-    return set(triplets)
+    triplets=()
+#    for x in range(range_start, range_end+1):
+#        for y in range(range_start, range_end+1):
+#            for z in range(range_start, range_end+1):
+#                if is_triplet((x,y,z)):
+#                    if triplets.count(tuple(sorted((x,y,z)))) < 1:
+#                        triplets.append(tuple(sorted((x,y,z))))
+#                        print("triplets: ", triplets)
+#    return set(triplets)
+    for x in {$range_start..$range_end}; do
+        for y in {$range_start..$range_end}; do
+            for z in {$range_start..$range_end}; do
+                [[ is_triplet "$x" "$y" "$z" ]] && \
+                    [[  ]]
+
+            done
+        done
+    done
+    echo "${triplets[@]}"
 }
 
 is_triplet(triplet){
