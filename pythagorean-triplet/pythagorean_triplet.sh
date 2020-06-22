@@ -41,7 +41,8 @@ triplets_in_range(){
         for y in {$range_start..$range_end}; do
             for z in {$range_start..$range_end}; do
                 [[ is_triplet "$x" "$y" "$z" ]] && \
-                    [[  ]]
+                    [[ sorted( x y z ) not already in triplets ]] && \
+                    triplets+=( "$x" "$y" "$z" )
 
             done
         done
