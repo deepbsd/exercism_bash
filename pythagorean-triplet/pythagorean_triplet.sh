@@ -50,7 +50,9 @@ triplets_in_range(){
     echo "${triplets[@]}"
 }
 
-is_triplet(triplet){
+is_triplet(){
+    [[ $# -eq 3 ]] || echo "not enough arguments in triplet." && exit 1
+
     triplet = sorted(triplet)
     return triplet[0]**2 + triplet[1]**2 == triplet[2]**2 and triplet[0]<triplet[1]<triplet[2]
 }
