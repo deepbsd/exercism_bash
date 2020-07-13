@@ -37,29 +37,33 @@ triplets_in_range(){
 #                        triplets.append(tuple(sorted((x,y,z))))
 #                        print("triplets: ", triplets)
 #    return set(triplets)
-    for x in {$range_start..$range_end}; do
-        for y in {$range_start..$range_end}; do
-            for z in {$range_start..$range_end}; do
-                [[ is_triplet "$x" "$y" "$z" ]] && \
-                    [[ sorted( x y z ) not already in triplets ]] && \
-                    triplets+=( "$x" "$y" "$z" )
 
-            done
-        done
-    done
-    echo "${triplets[@]}"
+
+#    for x in {$range_start..$range_end}; do
+#        for y in {$range_start..$range_end}; do
+#            for z in {$range_start..$range_end}; do
+#                [[ is_triplet "$x" "$y" "$z" ]] && \
+#                    [[ sorted( x y z ) not already in triplets ]] && \
+#                    triplets+=( "$x" "$y" "$z" )
+#
+#            done
+#        done
+#    done
+#    echo "${triplets[@]}"
 }
 
 is_triplet(){
-    [[ $# -eq 3 ]] || echo "is_triplet: not enough arguments in triplet." && exit 1
-    triplet=(( "$1" "$2" "$3" ))
+    #[[ $# -eq 3 ]] || echo "is_triplet: not enough arguments in triplet." && exit 1
+    declare -a triplet
+    triplet=( $1 $2 $3 )
     IFS=$'\n' triplet=($(sort<<<"${triplet[*]}"))
     unset IFS
-    if [[ $((${triplet[0]}**2 + ${triplet[1]}**2)) == $((${triplet[2]}**2)) && ${triplet[0]}<${triplet[1]}<${triplet[2]} ]] ; then
+    if [[ $((${triplet[0]}**2 + ${triplet[1]}**2)) == $((${triplet[2]}**2)) && $((${triplet[0]}<${triplet[1]}<${triplet[2]})) ]] ; then
         echo "true"
     else
         echo "false"
     fi
 }
 
-primitive_triplets "$@"
+#primitive_triplets "$@"
+is_triplet "$@"
