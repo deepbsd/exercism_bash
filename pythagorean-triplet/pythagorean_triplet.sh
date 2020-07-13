@@ -51,11 +51,11 @@ triplets_in_range(){
 }
 
 is_triplet(){
-    [[ $# -eq 3 ]] || echo "not enough arguments in triplet." && exit 1
-    triplet=[[ $1 $2 $3 ]]
+    [[ $# -eq 3 ]] || echo "is_triplet: not enough arguments in triplet." && exit 1
+    triplet=(( "$1" "$2" "$3" ))
     IFS=$'\n' triplet=($(sort<<<"${triplet[*]}"))
     unset IFS
-    if [[ ${triplet[0]}**2 + ${triplet[1]}**2 -eq ${triplet[2]}**2 && ${triplet[0]}<${triplet[1]}<${triplet[2]} ]]  ; then
+    if [[ $((${triplet[0]}**2 + ${triplet[1]}**2)) == $((${triplet[2]}**2)) && ${triplet[0]}<${triplet[1]}<${triplet[2]} ]] ; then
         echo "true"
     else
         echo "false"
