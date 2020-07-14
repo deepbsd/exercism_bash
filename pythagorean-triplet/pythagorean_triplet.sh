@@ -10,14 +10,17 @@ primitive_triplets(){
     declare -a triplet=() triplets=()
     declare -A setTriplets=()
 
-    big_start=$(( number_in_triplet**0.5 ))
+    big_start=$( bc <<< "scale=0; sqrt($number_in_triplet)" )
     big_end=$(( number_in_triplet**2 ))
 
     for number in {$big_start..$big_end}; do
-        start=$(( number**0.5 ))
-        end=$(( number**2 ))
+        start=$( bc <<< "scale=0; sqrt($number)")
+        end=$( echo "$number^2" | bc )
 
-        triplet=$( triplets_in_range "$start" "$end" )
+        echo "Start/End:  $start $end  Number: $number"
+
+        triplet=$( triplets_in_range $start $end )
+
         
         [[ " ${triplet[@]} " =~ "${number_in_triplet}" ]] && triplets+=( $triplet )
     done
@@ -39,17 +42,20 @@ triplets_in_range(){
 #    return set(triplets)
 
 
-#    for x in {$range_start..$range_end}; do
-#        for y in {$range_start..$range_end}; do
-#            for z in {$range_start..$range_end}; do
-#                [[ is_triplet "$x" "$y" "$z" ]] && \
-#                    [[ sorted( x y z ) not already in triplets ]] && \
-#                    triplets+=( "$x" "$y" "$z" )
-#
-#            done
-#        done
-#    done
-#    echo "${triplets[@]}"
+    for x in {$range_start..$range_end}; do
+        for y in {$range_start..$range_end}; do
+            for z in {$range_start..$range_end}; do
+                [[ $(is_triplet $x $y $z) == 0 ]] && \
+                    triplet=( $x $y $z ) && \
+                    IFS=$'\n' triplet=($(sort<"${triplet[*]}")) && \
+                    unset IFS && \
+                    [[ ! ${triplets[@]} =~ " ${triplet[@]} " ]] && \
+                    triplets+=( $x $y $z )
+
+            done
+        done
+    done
+    echo "${triplets[@]}"
 }
 
 is_triplet(){
@@ -64,5 +70,9 @@ is_triplet(){
     fi
 }
 
-#primitive_triplets "$@"
-is_triplet "$@"
+primitive_triplets "$@"
+#is_triplet "$@"
+#triplets_in_range "$@"
+
+
+
