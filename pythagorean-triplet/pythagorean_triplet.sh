@@ -13,7 +13,7 @@ primitive_triplets(){
     big_start=$( bc <<< "scale=0; sqrt($number_in_triplet)" )
     big_end=$(( number_in_triplet**2 ))
 
-    for number in {$big_start..$big_end}; do
+    for number in $(seq $big_start $big_end); do
         start=$( bc <<< "scale=0; sqrt($number)")
         end=$( echo "$number^2" | bc )
 
@@ -42,9 +42,9 @@ triplets_in_range(){
 #    return set(triplets)
 
 
-    for x in {$range_start..$range_end}; do
-        for y in {$range_start..$range_end}; do
-            for z in {$range_start..$range_end}; do
+for x in $(seq $range_start $range_end); do
+    for y in $(seq $range_start $range_end); do
+        for z in $(seq $range_start $range_end); do
                 [[ $(is_triplet $x $y $z) == 0 ]] && \
                     triplet=( $x $y $z ) && \
                     IFS=$'\n' triplet=($(sort<"${triplet[*]}")) && \
