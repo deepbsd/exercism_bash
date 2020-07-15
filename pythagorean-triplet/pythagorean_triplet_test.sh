@@ -15,7 +15,7 @@
 }
 
 @test "triplets whose sum is 108" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash pythagorean_triplet.sh 108
     (( status == 0 ))
     actual=$( sort -t, -n -k1,1 <<< "$output" )
@@ -24,7 +24,7 @@
 }
 
 @test "triplets whose sum is 1000" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash pythagorean_triplet.sh 1000
     (( status == 0 ))
     actual=$( sort -t, -n -k1,1 <<< "$output" )
@@ -33,7 +33,7 @@
 }
 
 @test "no matching triplets for 1001" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash pythagorean_triplet.sh 1001
     (( status == 0 ))
     [[ $output == "" ]]
@@ -43,7 +43,7 @@
 # see https://www.gnu.org/software/bash/manual/bash.html#ANSI_002dC-Quoting
 
 @test "returns all matching triplets" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash pythagorean_triplet.sh 90
     (( status == 0 ))
     actual=$( sort -t, -n -k1,1 <<< "$output" )
@@ -52,7 +52,7 @@
 }
 
 @test "several matching triplets" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash pythagorean_triplet.sh 840
     (( status == 0 ))
     actual=$( sort -t, -n -k1,1 <<< "$output" )
