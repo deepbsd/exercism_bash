@@ -71,7 +71,7 @@
 # Uncomment and run only for extra credit (or punishment).
 
 @test "triplets for large number" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run bash pythagorean_triplet.sh 30000
     (( status == 0 ))
     actual=$( sort -t, -n -k1,1 <<< "$output" )

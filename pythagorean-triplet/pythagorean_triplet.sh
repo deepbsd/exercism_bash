@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# Including the last test, this takes about 10.5 min on an i7-4700MQ laptop with 24G of memory
+# and running Linux Mint 20.  Runs faster on my newer machines.
 
 main(){
     for (( a=0; a<=$1/3; a++ )); do
