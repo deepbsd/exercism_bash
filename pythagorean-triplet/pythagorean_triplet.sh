@@ -40,9 +40,9 @@ main2(){
             #if (( a+b+c == $1 )); then
             if (( c>b && c**2 == a**2 + b**2 && a+b+c == $1 )); then
                 triplet=( $a $b $c )
-                echo "triplet: ${triplet[@]}"
                 IFS=$'\n' triplet=($(sort -n <<<"${triplet[*]}"))
                 triplets+=( "${triplet[0]},${triplet[1]},${triplet[2]}" )
+                echo "triplet: ${triplet[@]}"
                 unset IFS
             fi
         done
@@ -50,6 +50,22 @@ main2(){
     for triplet in "${triplets[@]}"; do echo $triplet; done | sort -n
 }
 
+main3(){
+    declare -i limit=$1 a=0 b=0 c=0 m=2
+    while (( c<limit )); do
+        for (( n=1; n<m; n++ )); do
+            a=$(( m*m - n*n ))
+            b=$(( 2*m*n ))
+            c=$(( m*m + n*n ))
+
+            if (( c > limit )); then break; fi
+            echo "$a,$b,$c"
+        done
+        m=$((++m))
+    done
+
+    
+}
 
 
-main2 "$@"
+main3 "$@"
