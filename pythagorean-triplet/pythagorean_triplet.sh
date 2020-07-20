@@ -57,9 +57,10 @@ main3(){
             a=$(( m*m - n*n ))
             b=$(( 2*m*n ))
             c=$(( m*m + n*n ))
-
             if (( c > limit )); then break; fi
-            echo "$a,$b,$c"
+            if (( c**2 == a**2 + b**2 && a+b+c == $1 )); then
+                echo "$a,$b,$c"
+            fi
         done
         m=$((++m))
     done
