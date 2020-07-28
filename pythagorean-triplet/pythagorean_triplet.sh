@@ -2,6 +2,9 @@
 
 # Including the last test, this takes about 10.5 min on an i7-4700MQ laptop with 24G of memory
 # and running Linux Mint 20.  Runs about 6m20s on my i5-6700K with 32G of memory running Arch.
+# main2 & main3 do not provide all valid triplets necessary to pass the tests.  main & main1 do.
+# using main(), all tests, even the 'large number' test, requires less than 6min on a slightly
+# overclocked i7-6700k.
 
 main(){
     for (( a=3; a<=$1/3; a++ )); do
