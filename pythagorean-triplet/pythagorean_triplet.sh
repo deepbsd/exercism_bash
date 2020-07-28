@@ -4,8 +4,8 @@
 # and running Linux Mint 20.  Runs about 6m20s on my i5-6700K with 32G of memory running Arch.
 
 main(){
-    for (( a=0; a<=$1/3; a++ )); do
-        for (( b=a+1; b<$1/2; b++ )); do
+    for (( a=3; a<=$1/3; a++ )); do
+        for (( b=a+1; b<=($1-a)/2; b++ )); do
             c=$(($1-a-b))
             if (( $a**2 + $b**2 == $c**2 )); then
                 triplets+=( "$a,$b,$c" )
@@ -36,13 +36,13 @@ main2(){
             a=$(( m**2 - n**2 ))
             b=$(( 2*m*n ))
             c=$(( m**2 + n**2 ))
-            echo "a,b,c: $a,$b,$c" | sort 
+            #echo "a,b,c: $a,$b,$c" | sort 
             #if (( a+b+c == $1 )); then
             if (( c>b && c**2 == a**2 + b**2 && a+b+c == $1 )); then
                 triplet=( $a $b $c )
                 IFS=$'\n' triplet=($(sort -n <<<"${triplet[*]}"))
                 triplets+=( "${triplet[0]},${triplet[1]},${triplet[2]}" )
-                echo "triplet: ${triplet[@]}"
+                #echo "triplet: ${triplet[@]}"
                 unset IFS
             fi
         done
@@ -64,7 +64,5 @@ main3(){
         done
         m=$((++m))
     done
-
-    
 }
-main3 "$@"
+main "$@"
